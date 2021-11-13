@@ -60,6 +60,6 @@ Väikeste laobokside välja rentimise app, mis võimaldab näha erineval ajavahe
    [Node.js]: <http://nodejs.org>
    [Express]: <http://expressjs.com>
    [MongoDB]: <https://www.mongodb.com/>
-   [Miro link]: <https://miro.com/app/board/o9J_lkgtdlc=//>
+   [Miro link]: <https://miro.com/app/board/o9J_lkgtdlc=/>
 
   
