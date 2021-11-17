@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Layout } from 'antd';
+import Greeting from "./pages/Greeting";
+import 'antd/dist/antd.css';
+import "./App.css";
+import Navbar from "./components/Navbar";
+import Register from "./components/Register"
+
+
+
+const { Header, Footer, Content } = Layout;
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React uaaaauaaa
-        </a>
-      </header>
-    </div>
+
+    <BrowserRouter>
+      <Layout>
+        <Header className= "header">
+          <Route path="/" component={Navbar}/>
+        </Header>
+        <Content style={{ padding: ' 50px'  }}>
+          <div className="site-layout-content">
+
+            <Switch>
+              <Route exact path="/Greeting" component={Greeting} />
+              <Route exact path="/Register" component={Register} />
+            </Switch>
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'Center' }}> Rakenduste programmeerimine 2021 projekt
+        </Footer>
+      </Layout>
+    </BrowserRouter>
   );
 }
 

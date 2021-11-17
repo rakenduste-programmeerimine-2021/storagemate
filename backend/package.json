@@ -6,8 +6,6 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon --inspect=0.0.0.0:9000 -L src/server.js"
-
-    
   },
   "keywords": [],
   "author": "",
@@ -17,6 +15,7 @@
     "nodemon": "^2.0.15"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "react-router-dom": "^6.0.2"
   }
 }
