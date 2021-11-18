@@ -22,7 +22,7 @@ class Navbar extends React.Component {
         <Menu.Item key="home" icon={<HomeOutlined />}><Link to="/Greeting"></Link>
           Home
         </Menu.Item>
-        <Menu.Item key="user" icon={<UserOutlined />}><Link to="/Greeting"></Link>
+        <Menu.Item key="user" icon={<UserOutlined />}><Link to="/Login"></Link>
           Login
         </Menu.Item>
         <Menu.Item key="Storages" icon={<DropboxOutlined />}><Link to="/Greeting"></Link>

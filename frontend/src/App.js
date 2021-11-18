@@ -5,7 +5,8 @@ import Greeting from "./pages/Greeting";
 import 'antd/dist/antd.css';
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Register from "./components/Register"
+import Register from "./components/Register";
+import Login from "./components/Login";
 
 
 
@@ -26,6 +27,7 @@ function App() {
             <Switch>
               <Route exact path="/Greeting" component={Greeting} />
               <Route exact path="/Register" component={Register} />
+              <Route exact path="/Login" component={Login} />
             </Switch>
           </div>
         </Content>
