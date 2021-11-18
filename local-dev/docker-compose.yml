@@ -29,7 +29,7 @@ services:
       - '8081:3000'
       - '9000:9000'
     environment: 
-      MONGODB_URI: mongodb://root:root@mongo/if18?authSource=admin
+      MONGODB_URI: mongodb://root:root@mongo/storagemate?authSource=admin
     volumes: 
       - '../backend:/home/node/app:delegated'
     command: 'run dev'
