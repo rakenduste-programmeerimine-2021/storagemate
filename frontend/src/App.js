@@ -7,7 +7,7 @@ import "./App.css";
 import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import Login from "./components/Login";
-
+import AdminLogin from "./components/AdminLogin";
 
 
 const { Header, Footer, Content } = Layout;
@@ -28,6 +28,7 @@ function App() {
               <Route exact path="/Greeting" component={Greeting} />
               <Route exact path="/Register" component={Register} />
               <Route exact path="/Login" component={Login} />
+              <Route exact path="/adminlogin" component={AdminLogin} />
             </Switch>
           </div>
         </Content>
