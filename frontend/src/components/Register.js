@@ -109,7 +109,7 @@ function Register() {
         console.log(data)
         console.log(data.message)
         if(response.ok){
-            history.push('/');
+            history.push('/login');
         };
     };
 

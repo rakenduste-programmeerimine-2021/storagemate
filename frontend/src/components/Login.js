@@ -47,7 +47,7 @@ const Login = () => {
             console.log(" RESPONSE OK ");
             console.log(data);
             dispatch(loginUser(data));
-            history.push("/") 
+            history.push("/greeting") 
         }
         else {
             console.log("Login failed")

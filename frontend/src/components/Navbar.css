@@ -1,0 +1,14 @@
+.logo{
+    float: left;
+    height: 40px;
+    margin: 5px 20px 5px 10px;
+
+}
+.logreg{
+    display: flex;
+    justify-content: right;
+}
+.menumain{
+    display: flex;
+    justify-content: left;
+}
