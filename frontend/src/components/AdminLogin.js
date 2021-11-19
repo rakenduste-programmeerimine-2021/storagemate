@@ -27,7 +27,7 @@ const AdminLogin = () => {
         console.log(email);
         console.log(password);
 
-        const response = await  fetch('http://localhost:8081/api/auth/adminlogin/', {
+        const response = await  fetch('http://localhost:8081/api/adminauth/adminlogin/', {
             method: 'POST',
             body: JSON.stringify({
                 email,
@@ -47,7 +47,7 @@ const AdminLogin = () => {
             console.log(" RESPONSE OK ");
             console.log(data);
             dispatch(loginUser(data));
-            history.push("/") 
+            history.push("/greeting") 
         }
         else {
             console.log("Login failed")
@@ -58,7 +58,7 @@ const AdminLogin = () => {
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>Admin Login</h1>
         <Row className="row"  justify="center" align="center">
             <Col flex="auto" justify= "center" align="center">
             

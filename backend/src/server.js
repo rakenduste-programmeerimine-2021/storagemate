@@ -6,6 +6,7 @@ require("dotenv").config()
 
 
 authRoutes = require('./routes/auth');
+adminauthRoutes = require('./routes/adminauth');
 
 const app = express()
 
@@ -32,7 +33,7 @@ app.use(function (req, res, next) {
 });
 
 app.use('/api/auth', authRoutes);
-
+app.use('/api/adminauth',adminauthRoutes);
 
 
 app.get('/', (req, res) => {
