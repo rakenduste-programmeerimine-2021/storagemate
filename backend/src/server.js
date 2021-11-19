@@ -2,6 +2,8 @@ const express = require('express')
 const mongoose = require('mongoose')
 const PORT = process.env.PORT || 3000
 const jwtAuth = require("./middleware/jwtAuth")
+require("dotenv").config()
+
 
 authRoutes = require('./routes/auth');
 
