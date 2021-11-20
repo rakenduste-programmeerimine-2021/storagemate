@@ -41,16 +41,6 @@ const tailFormItemLayout = {
     },
 };
 
-const validateMessages = {
-    required: '${label} is required!',
-    types: {
-        email: '${label} is not a valid email!',
-        number: '${label} is not a valid number!',
-    },
-    number: {
-        range: '${label} must be between ${min} and ${max}',
-    },
-}
 
 
 
@@ -121,14 +111,14 @@ function Register() {
             <h1>Register</h1>
             <Row className="row"  justify="center" align="center">
             <Col flex="auto" justify= "center" align="center"> 
-            <Form {...layout} className="register-form" name="Register" onFinish={onFinish} validateMessages={validateMessages}>
+            <Form {...layout} className="register-form" name="Register" onFinish={onFinish}>
                 <Form.Item 
                     name='firstname' 
                     label="First Name" 
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     autoFocus
-                    rules={[{ required: true }, {min:3, message: "First name must be minimum 3 characters"}]}>
+                    rules={[{ required: true, message:"First name is required" }, {min:3, message: "First name must be minimum 3 characters"}]}>
                     <Input />
                 </Form.Item>
 
@@ -138,7 +128,7 @@ function Register() {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     autoFocus
-                    rules={[{ required: true }, {min:3, message: "Last name must be minimum 3 characters"}]}>
+                    rules={[{ required: true, message:"Lastname is required" }, {min:3, message: "Last name must be minimum 3 characters"}]}>
                     <Input />
                 </Form.Item>
 
@@ -148,7 +138,7 @@ function Register() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     autoFocus
-                    rules={[{ type: 'email', required: true }]}>
+                    rules={[{ type: 'email', required: true, message:"Email is required" }]}>
                     <Input />
                 </Form.Item>
 

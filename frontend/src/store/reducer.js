@@ -27,7 +27,7 @@ const postReducer = (state, action) => {
 const authReducer = (state, action) => {
   switch(action.type){
     case USER_LOGIN:
-      console.log(action.payload.user);
+      console.log(action.payload.token);
       return {
         ...state,
         
