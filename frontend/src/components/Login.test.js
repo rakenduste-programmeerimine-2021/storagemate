@@ -4,13 +4,13 @@ import Login from "./Login";
 
 
 it('checks if login heading text exists', () =>{
-    render(<Login/>);
-    const h1Text = screen.queryByText(/h1/i);
+    const div = document.createElement('div');
+    render(<Login/>, div);
     const loginText = screen.getByText(/Login/i)
 
 
-    expect(h1Text).not.toBeNull();
-    expect(loginText).not.toBeNull();
+
+    expect(loginText).toBeInTheDocument();
 
 
 });
