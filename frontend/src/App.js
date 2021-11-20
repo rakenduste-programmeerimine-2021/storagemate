@@ -8,6 +8,9 @@ import Navbar from "./components/Navbar";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import AdminLogin from "./components/AdminLogin";
+import Home from "./pages/Home";
+import Storages from "./pages/Storages";
+import AboutUs from "./pages/AboutUs";
 
 
 const { Header, Footer, Content } = Layout;
@@ -26,9 +29,13 @@ function App() {
 
             <Switch>
               <Route exact path="/Greeting" component={Greeting} />
-              <Route exact path="/Register" component={Register} />
-              <Route exact path="/Login" component={Login} />
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/adminlogin" component={AdminLogin} />
+              <Route exact path="/" component={Home} />
+              <Route exact path="/storages" component={Storages} />
+              <Route exact path="/aboutus" component={AboutUs} />
+
             </Switch>
           </div>
         </Content>

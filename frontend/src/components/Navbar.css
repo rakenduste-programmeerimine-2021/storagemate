@@ -1,14 +1,27 @@
 .logo{
     float: left;
     height: 40px;
-    margin: 5px 20px 5px 10px;
+    vertical-align: center;
+    margin: 5px 10px 5px 10px;
 
 }
 .logreg{
-    display: flex;
-    justify-content: right;
+
+    
+    float: right;
 }
 .menumain{
+    
     display: flex;
-    justify-content: left;
+    justify-content: right;
+
+}
+.navbar{
+    
+    overflow: hidden;
+    display: flex;
+    justify-content:initial;
+    align-items: center;
+    
+    
 }

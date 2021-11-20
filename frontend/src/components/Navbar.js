@@ -10,10 +10,7 @@ import {logoutUser} from "../store/actions";
 
 
 const Navbar = () =>  {
-  /* state = {
-    current: 'user',
-  };
- */
+  
   const[state, dispatch] = useContext(Context)
   const history = useHistory();
   const [key, setKey] = useState("");
@@ -21,13 +18,15 @@ const Navbar = () =>  {
 
   useEffect(() => {
       if (window.location) {
-          if( current !== window.location.pathname ) {
-              setCurrent(window.location.pathname);
-          }
+        console.log(window.location)
+        console.log (window.location.pathname)
+        if( current !== window.location.pathname ) {
+          setCurrent(window.location.pathname);
+        }
       }
   }, [window.location, current]);
 
-  const handleClick = ({ _item, key, _keyPath, _domEvent }) => {
+  const handleClick = (key) => {
       setCurrent(key);
 
   };
@@ -37,53 +36,62 @@ const Navbar = () =>  {
     history.push("/login")
   }    
 
-
-
-
-  /* handleClick = e => {
-    console.log('click ', e);
-    this.setState({ current: e.key });
-  }; */
-
-/*   return {
-    const { current } = this.state; */
     return (
-      <><div className="logo">
-        <Link to="/">
-          <img className="logo" src="logo192.png" alt="ReactLogo" />
-        </Link>
+      <>
+        <div className="logo">
+          <Link to="/">
+            <img className="logo" src="Storagemate.png" alt="ReactLogo" />
+          </Link>
+        </div>
 
-      </div><Menu theme="dark" mode="horisontal" onClick={handleClick} selectedKeys={[current]} mode="horizontal">
-          <div className="menumain">
-            <Menu.Item key="/greeting" icon={<HomeOutlined />}><Link to="/Greeting"></Link>
-              Home
-            </Menu.Item>
+        <Menu 
+          className="navbar"
+          theme="dark" 
+          mode="horisontal"
 
-            <Menu.Item key="/greeting" icon={<DropboxOutlined />}><Link to="/Greeting"></Link>
-              Storages
-            </Menu.Item>
-            <Menu.Item key="/greeting" icon={<InfoOutlined />}><Link to="/Greeting"></Link>
-              About Us
-            </Menu.Item>
-          </div>
-
+          onClick={handleClick}
+          selectedKeys={[current]}
+          selectable={true}
+        >
           {!state.auth.token ?
-            <div className="logreg">
-              <Menu.Item key="/login" icon={<UserOutlined />}><Link to="/Login"></Link>
+            <>
+              <Menu.Item key="/" icon={<HomeOutlined />}><Link to="/"></Link>
+                Home
+              </Menu.Item>
+
+              <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
+                Storages
+              </Menu.Item>
+              <Menu.Item  key="/aboutus" icon={<InfoOutlined />}><Link to="/aboutus"></Link>
+                About Us
+              </Menu.Item>
+              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<UserOutlined />}><Link to="/Login"></Link>
                 Login
               </Menu.Item>
-              <Menu.Item key="/register" icon={<UserOutlined />}><Link to="/Register"></Link>
+              <Menu.Item  style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="/Register" icon={<UserOutlined />}><Link to="/Register"></Link>
                 Register
               </Menu.Item>
-            </div>
+            </>
             :
-            <div className="logreg">
-              <Menu.Item key="x"><Link to="/login" onClick={Logout}>Log out</Link></Menu.Item>
-            </div>
+           
+            <>
+              <Menu.Item key="/" icon={<HomeOutlined />}><Link to="/"></Link>
+                Home
+              </Menu.Item>
+
+              <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
+                Storages
+              </Menu.Item>
+              <Menu.Item key="/aboutus" icon={<InfoOutlined />}><Link to="/aboutus"></Link>
+                About Us
+              </Menu.Item>
+              <Menu.Item style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="x"><Link to="/" onClick={Logout}>Log out</Link></Menu.Item>
+            </>
           }
   
         </Menu>
-        </>
+        
+      </>
     );
   
 }
