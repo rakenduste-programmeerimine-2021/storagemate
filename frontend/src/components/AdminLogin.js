@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
+import { Form, Input, Button, Row, Col } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './Login.css';
 import { Context } from "../store";
@@ -15,7 +15,7 @@ const AdminLogin = () => {
     const [password, setPassword] =useState('')
     const history = useHistory();
 
-    
+    console.log(state);
 
     const onFinish = async (e) => {
         console.log('Received values of form: ', e);
@@ -102,16 +102,6 @@ const AdminLogin = () => {
                     placeholder="Password"
                     />
                 </Form.Item>
-                <Form.Item>
-                    <Form.Item name="remember" valuePropName="checked" noStyle>
-                    <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-
-                    <a className="login-form-forgot" >
-                    Forgot password
-                    </a>
-                </Form.Item>
-
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button">
                     Log in

@@ -15,6 +15,7 @@ const Login = () => {
     const [password, setPassword] =useState('')
     const history = useHistory();
 
+    console.log(state);
     
 
     const onFinish = async (e) => {
@@ -107,10 +108,10 @@ const Login = () => {
                     <Checkbox>Remember me</Checkbox>
                     </Form.Item>
 
-                    <a className="login-form-forgot" >
-                    Forgot password
-                    </a>
-                </Form.Item>
+                        <a className="login-form-forgot" href="/register"> 
+                        Forgot password
+                        </a>
+                    </Form.Item>
 
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="login-form-button">

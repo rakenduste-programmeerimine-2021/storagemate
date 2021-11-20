@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react';
+import React, {useContext, useState/*,useEffect*/} from 'react';
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
 import { Menu } from 'antd';
@@ -13,10 +13,10 @@ const Navbar = () =>  {
   
   const[state, dispatch] = useContext(Context)
   const history = useHistory();
-  const [key, setKey] = useState("");
+  //const [key, setKey] = useState("");
   const [current, setCurrent] = useState(window.location.pathname)       
 
-  useEffect(() => {
+  /*useEffect(() => {
       if (window.location) {
         console.log(window.location)
         console.log (window.location.pathname)
@@ -24,7 +24,7 @@ const Navbar = () =>  {
           setCurrent(window.location.pathname);
         }
       }
-  }, [window.location, current]);
+  }, [window.location, current]);*/
 
   const handleClick = (key) => {
       setCurrent(key);
