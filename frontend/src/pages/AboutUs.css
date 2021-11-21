@@ -1,0 +1,28 @@
+.map {
+    width: 700px; /* or whatever width you want. */
+    max-width:700px; /* or whatever width you want. */
+    display: right;
+    float:right;
+    background-color: rgb(245, 245, 245);
+}
+
+.TextStorage {
+    width: 400px;
+    height: 50px;
+    color: rgb(3, 4, 90);
+    float: left;
+    margin-left: 10px;
+    font-size: 15px
+}
+
+p {    
+    font-size: 16px;
+}
+
+h2 {
+    width: 400px;
+    height: 50px;
+    color: rgb(3, 0, 206);
+    float: left;
+    font-size: 15px
+}
