@@ -67,13 +67,6 @@ function Register() {
         setPassword(e.password);
         setConfirmPassword(e.confirmpassword);
     
-        
-    
-     
-    
-    
-    
-    
     
         console.log(firstName);
         console.log(lastName);
