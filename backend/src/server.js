@@ -7,6 +7,8 @@ require("dotenv").config()
 
 authRoutes = require('./routes/auth');
 adminauthRoutes = require('./routes/adminauth');
+storageRoutes = require('./routes/storage');
+
 
 const app = express()
 
@@ -34,6 +36,7 @@ app.use(function (req, res, next) {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/adminauth',adminauthRoutes);
+app.use('/api/storage/', storageRoutes);
 
 
 app.get('/', (req, res) => {
