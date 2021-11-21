@@ -10,12 +10,10 @@ import {loginUser} from "../store/actions";
 
 const Login = () => {
 
-    const [state, dispatch ] = useContext(Context)
+    const [ dispatch ] = useContext(Context)
     const [email, setEmail] = useState('')
     const [password, setPassword] =useState('')
     const history = useHistory();
-
-    console.log(state);
     
 
     const onFinish = async (e) => {
