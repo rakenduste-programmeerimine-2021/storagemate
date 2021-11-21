@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
   
 // tells mongoose to use ES6 implementation of promises
 mongoose.Promise = global.Promise;
-const MONGODB_URI = 'mongodb://root:root@mongo/storagemate?authSource=admin';
+const MONGODB_URI = 'mongodb://root:root@localhost:27017/storagemate?authSource=admin';
 mongoose.connect(MONGODB_URI);
   
 mongoose.connection
