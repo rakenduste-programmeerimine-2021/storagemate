@@ -4,12 +4,17 @@ import { useHistory } from "react-router-dom";
 import { updateStorages } from '../store/actions';
 import { List, Card, Button } from 'antd';
 import "./Storages.css";
+import { DatePicker, Space } from 'antd';
+import moment from 'moment';
+
+
+
 
 function Storages() {
   const [state, dispatch] = useContext(Context);
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
-
+  const { RangePicker } = DatePicker;
  /*  if(state.auth.token === null) {
     history.push('/login')
   }
@@ -25,6 +30,17 @@ function Storages() {
         setIsLoading(false);
     }); 
   },[]);  
+
+
+
+
+  function onChange(dates, dateStrings) {
+    console.log('From: ', dates[0], ', to: ', dates[1]);
+    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+
+
+
+  }
 
 
   function handleReservation(ID, NAME, VOLUME, FLOORSPACE, STATUS ){
@@ -45,10 +61,26 @@ function Storages() {
     return (<div>Loading...</div>)
   } 
 
+
   return (
     <>
       <h1>Storages</h1>
       <p>Siin kuvame vabu ladusid vastavalt ajavahemikule</p>
+      <Space className="datepicker" direction="vertical" size={12}>
+      <h1>Vali broneerimis vahemik</h1>
+        <RangePicker size="large"
+          ranges={{
+            Today: [moment(), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+          }}
+          onChange={onChange}
+        />
+      </Space>
+
+
+
+
+
 
 
       <List
@@ -60,7 +92,7 @@ function Storages() {
           md: 2,
           lg: 3,
           xl: 4,
-          xxl: 5,
+          xxl: 4,
         }}
         dataSource={state.storages.data}
         renderItem={item => (
