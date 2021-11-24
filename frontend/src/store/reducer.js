@@ -1,20 +1,20 @@
-import { POST_ADD, POST_REMOVE, POSTS_UPDATE, USER_LOGIN, USER_LOGOUT } from "./actions";
+import { STORAGE_ADD, STORAGE_REMOVE, STORAGES_UPDATE, USER_LOGIN, USER_LOGOUT } from "./actions";
 
-const postReducer = (state, action) => {
+const storageReducer = (state, action) => {
   switch(action.type){
-    case POST_ADD:
+    case STORAGE_ADD:
       return {
         ...state,
         data: state.data.concat(action.payload)
       };
-    case POST_REMOVE:
+    case STORAGE_REMOVE:
       
       return {
         ...state,
         data: state.data.filter(post => post.id !== action.payload)
       }
-    // Kodutööna uue listi vastu võtmine maybe
-    case POSTS_UPDATE: 
+
+    case STORAGES_UPDATE: 
         return {
           ...state,
           data: action.payload
@@ -52,4 +52,4 @@ const authReducer = (state, action) => {
   }
 }
 
-export { postReducer, authReducer }
+export { storageReducer, authReducer }

@@ -11,6 +11,7 @@ import AdminLogin from "./components/AdminLogin";
 import Home from "./pages/Home";
 import Storages from "./pages/Storages";
 import AboutUs from "./pages/AboutUs";
+import Reservation from "./pages/Reservation";
 
 
 const { Header, Footer, Content } = Layout;
@@ -35,6 +36,7 @@ function App() {
               <Route exact path="/" component={Home} />
               <Route exact path="/storages" component={Storages} />
               <Route exact path="/aboutus" component={AboutUs} />
+              <Route exact path="/reservation" component={Reservation} />
 
             </Switch>
           </div>
