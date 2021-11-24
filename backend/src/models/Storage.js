@@ -8,9 +8,6 @@ const storageSchema = new Schema({
     floorspace: { type: String, requiered: true },
     priceperday: { type: String, requiered: true },
     status: { type: String, requiered: true },  
-    rentalstart: { type: Date },
-    rentalend: {type: Date},
-    rentinguseremail: {type: String }
 });
 
 

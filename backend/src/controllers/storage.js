@@ -6,6 +6,7 @@ exports.getStorages = async (req, res) => {
     res.status(200).send(storages)
 }
 
+
 exports.createStorage = async (req, res) => {
     // Saaksite info kätta req.body -st
     const { name, number, volume, floorspace, priceperday, status} = req.body  
