@@ -1,22 +1,21 @@
-export const POST_ADD = "POST_ADD"
-export const POST_REMOVE = "POST_REMOVE"
+export const STORAGE_ADD = "STORAGE_ADD"
+export const STORAGE_REMOVE = "STORAGE_REMOVE"
 export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGOUT = "USER_LOGOUT"
-export const POSTS_UPDATE = "POSTS_UPDATE"
+export const STORAGES_UPDATE = "STORAGES_UPDATE"
 
-export const addPost = post => ({
-  type: POST_ADD,
+export const addStorage = post => ({
+  type: STORAGE_ADD,
   payload: post
 })
 
-export const removePost = id => ({
-  type: POST_REMOVE,
+export const removeStorage = id => ({
+  type: STORAGE_REMOVE,
   payload: id
 })
 
-// Lisada siis uus konstant selle jaoks ja muuta ka reduceris
-export const updatePosts = array => ({
-  type: POSTS_UPDATE,
+export const updateStorages = array => ({
+  type: STORAGES_UPDATE,
   payload: array
 })
 

@@ -36,7 +36,7 @@ app.use(function (req, res, next) {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/adminauth',adminauthRoutes);
-app.use('/api/storage/', storageRoutes);
+app.use('/api/storage', storageRoutes);
 
 
 app.get('/', (req, res) => {
