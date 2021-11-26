@@ -10,6 +10,8 @@ adminauthRoutes = require('./routes/adminauth');
 storageRoutes = require('./routes/storage');
 reservationRoutes= require('./routes/reservation');
 
+
+console.log (require('./routes/reservation'));
 const app = express()
 
 app.use(express.json());

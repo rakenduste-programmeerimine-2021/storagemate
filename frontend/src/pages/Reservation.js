@@ -8,7 +8,8 @@ console.log(useLocation().state.name);
 console.log(useLocation().state.volume);
 console.log(useLocation().state.floorspace);
 console.log(useLocation().state.status);
-
+console.log(useLocation().state.startdate);
+console.log(useLocation().state.enddate);
 
 
   return (
