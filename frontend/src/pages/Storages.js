@@ -9,6 +9,7 @@ import moment from 'moment';
 
 var startdate;
 var enddate;
+var daycount;
 
 
 function Storages() {
@@ -45,6 +46,15 @@ function Storages() {
     enddate = dateStrings[1];
     console.log(startdate);
     console.log(enddate);
+    let sdate = Date.parse(startdate);
+    let edate = Date.parse(enddate);
+    console.log(sdate)
+    console.log(edate)
+
+    var Difference_In_Time = edate - sdate;
+    daycount = parseInt(Difference_In_Time / (1000 * 3600 * 24));
+    console.log(daycount, "siin on paevade vahe")
+    
     
 
     const response = await  fetch('http://localhost:8081/api/reservation/bydate/', {
@@ -77,13 +87,13 @@ function Storages() {
   
   }
 
-  function handleReservation(ID, NAME, VOLUME, FLOORSPACE, STATUS, STARTDATE, ENDDATE ){
+  function handleReservation(ID, NAME, VOLUME, FLOORSPACE, STATUS, STARTDATE, ENDDATE, PRICEPERDAY, DAYCOUNT ){
     console.log(ID);
     console.log(NAME);
     console.log(VOLUME);
     console.log(FLOORSPACE)
     console.log(STATUS)
-    history.push("/reservation", {id: ID, name: NAME, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE})
+    history.push("/reservation", {id: ID, name: NAME, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE, priceperday: PRICEPERDAY, daycount: DAYCOUNT})
         
 }
 
@@ -100,9 +110,9 @@ function Storages() {
     <>
       <div>
         <h1>Storages</h1>
-        <p>Siin kuvame vabu ladusid vastavalt ajavahemikule</p>
+        <p>Here are available storage units by given timeperiod</p>
         <Space className="datepicker" direction="vertical" size={12}>
-        <h1>Ajavahemik:</h1>
+        <h1>Timeperiod:</h1>
           <RangePicker size="large"
             ranges={{
               Today: [moment(), moment()],
@@ -142,10 +152,9 @@ function Storages() {
                 description={item.volume}
               >
                 <h2>{item.name}</h2> 
-                <p>Maht: {item.volume}</p>
-                <p>pindala: {item.floorspace} </p>
-
-                <p>Hind:</p>
+                <p>Volume: {item.volume}</p>
+                <p>Floorspace: {item.floorspace} </p>
+                <p>Price: {item.priceperday * daycount}$</p>
 
                 <Button 
                   type="primary" block
@@ -153,12 +162,12 @@ function Storages() {
 
                     history.push('/login')
                     : 
-                    handleReservation(item._id, item.name, item.volume, item.floorspace, item.status, startdate, enddate)
+                    handleReservation(item._id, item.name, item.volume, item.floorspace, item.status, startdate, enddate, item.priceperday, daycount)
                   
                     }
                   }  
                 >
-                  Rohkem
+                  Select
                 </Button>
 
                 
@@ -170,7 +179,7 @@ function Storages() {
         />
         :
         
-        <h1 className="message" >Ladude nägemiseks valige ajaperiood, milleks soovite ladu broneerida.</h1>
+        <h1 className="message" >To see available storage units, you need to select dates first.</h1>
       
         
         

@@ -5,7 +5,9 @@ const reservationSchema = new Schema({
     storageid: { type: String, required: true },  
     rentalstart: { type: Date },
     rentalend: {type: Date},
-    rentinguseremail: {type: String }
+    rentinguseremail: {type: String },
+    totalprice: {type: Number}
+
 });
 
 

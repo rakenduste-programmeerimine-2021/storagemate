@@ -39,19 +39,24 @@ exports.getReservationByDate = async (req, res) => {
 
 exports.createReservation = async (req, res) => {
     // Saaksite info kätta req.body -st
+    
     const { storageid, rentalstart, rentalend, rentinguseremail } = req.body  
+    try{
+        const newReservation = new Reservation({
+            storageid,
+            rentalstart,
+            rentalend,
+            rentinguseremail
+        })
 
-    const newReservation = new Reservation({
-        storageid,
-        rentalstart,
-        rentalend,
-        rentinguseremail
-    })
+        const savedReservation = await newReservation.save()
+        if (!savedReservation) throw Error("Error saving Reservation")
 
-    const savedReservation = await newReservation.save()
-    if (!savedReservation) throw Error("Error saving Reservation")
-
-    res.status(200).send(`yay ${savedReservation._id}`)
+        res.status(200).send(`yay ${savedReservation._id}`)
+    } catch (e){
+        res.status(400).json({ error: e.message }) 
+        alert(e.messasge)
+    }
 }
 exports.updateReservation = async (req, res) => {
 
