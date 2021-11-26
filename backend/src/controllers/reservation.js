@@ -11,12 +11,31 @@ exports.getReservationsByDate = async (req, res) => {
     const { startdate, enddate } = req.body 
 
     const reservations = await Reservation.find( { $or: [ {rentalstart: {$gte:startdate, $lte: enddate}}, {rentalend: {$gte:startdate, $lte: enddate}}]})
+    console.log(reservations);
+    
+    const resids =  reservations.map((singleitem) => {return (singleitem.storageid);} );
+
+    console.log(resids);
+
+    /* db.users.find({todos: {$elemMatch: {date: { $gte: start, $lt: end }}}}, {'todos':1}).pretty()
+    db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
+    db.foo.find({a: { $not: {$elemMatch: {n: 1, r: 10 } } } }) */
+    res.status(200).send(resids)
+}
+
+exports.getReservationByDate = async (req, res) => {
+
+    const { startdate, enddate } = req.body 
+
+    const reservations = await Reservation.find( { $or: [ {rentalstart: {$gte:startdate, $lte: enddate}}, {rentalend: {$gte:startdate, $lte: enddate}}]})
 
     /* db.users.find({todos: {$elemMatch: {date: { $gte: start, $lt: end }}}}, {'todos':1}).pretty()
     db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
     db.foo.find({a: { $not: {$elemMatch: {n: 1, r: 10 } } } }) */
     res.status(200).send(reservations)
 }
+
+
 
 exports.createReservation = async (req, res) => {
     // Saaksite info kätta req.body -st

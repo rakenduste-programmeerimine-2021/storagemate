@@ -2,7 +2,7 @@ const router = require("express").Router()
 const reservationController = require("../controllers/reservation")
 
 router.get("/", reservationController.getReservations)
-router.get("/bydate/:startdate/:enddate", reservationController.getReservationsByDate)
+router.post("/bydate", reservationController.getReservationsByDate)
 router.post("/create", reservationController.createReservation)
 router.put("/update/:id", reservationController.updateReservation)
 router.delete("/delete/:id", reservationController.deleteReservation)
