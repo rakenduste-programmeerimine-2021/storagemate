@@ -47,7 +47,7 @@ const AdminLogin = () => {
             console.log(" RESPONSE OK ");
             console.log(data);
             dispatch(loginUser(data));
-            history.push("/greeting") 
+            history.push("/adminhome") 
         }
         else {
             console.log("Login failed")

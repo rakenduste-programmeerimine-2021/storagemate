@@ -49,4 +49,60 @@ router.post(
     authController.signup
 );
 
+router.post("/update/:id",
+    [
+    check("firstName")
+        .isLength({ min: 3 })
+        .withMessage("Must be at least 3 characters long")
+        .trim()
+        .exists()
+        .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
+        .withMessage("Must be alphabetic"),
+    check("lastName")
+        .isLength({ min: 3 })
+        .withMessage("Must be at least 3 characters long")
+        .trim()
+        .exists()
+        .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
+        .withMessage("Must be alphabetic"),
+    check("email")
+        .isEmail()
+        .normalizeEmail()
+        .withMessage("Must be correctly formatted e-mail"),
+    ],
+    validationMiddleware,
+    authController.update
+);
+
+router.post(
+    "/changepw",
+    [
+    check("firstName")
+        .isLength({ min: 3 })
+        .withMessage("Must be at least 3 characters long")
+        .trim()
+        .exists()
+        .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
+        .withMessage("Must be alphabetic"),
+    check("lastName")
+        .isLength({ min: 3 })
+        .withMessage("Must be at least 3 characters long")
+        .trim()
+        .exists()
+        .matches(/^[A-ZÕÄÖÜa-zõäöü]+$/)
+        .withMessage("Must be alphabetic"),
+    check("email")
+        .isEmail()
+        .normalizeEmail()
+        .withMessage("Must be correctly formatted e-mail"),
+    check("password")
+        .isLength({ min: 6 })
+        .withMessage("Must be at least 6 characters long"),
+    ],
+    validationMiddleware,
+    authController.changepw
+);
+
+
+
 module.exports = router;

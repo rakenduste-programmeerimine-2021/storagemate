@@ -5,6 +5,7 @@ import {
     Row,
     Col,
     Button,
+
 } from 'antd';
 import { useHistory } from "react-router-dom";
 import './Register.css';
@@ -52,10 +53,14 @@ function Register() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     const [password, setPassword] = useState('')
     const [confirmpassword, setConfirmPassword] = useState('')
     let history = useHistory();
 
+
+
+    
 
     const onFinish = async (e) => {
         console.log(e);
@@ -64,6 +69,7 @@ function Register() {
         setFirstName(e.firstname);
         setLastName(e.lastname);
         setEmail(e.email);
+        setPhone(e.phone);
         setPassword(e.password);
         setConfirmPassword(e.confirmpassword);
     
@@ -71,6 +77,7 @@ function Register() {
         console.log(firstName);
         console.log(lastName);
         console.log(email);
+        console.log(phone);
         console.log(password);
 
         const response = await fetch('http://localhost:8081/api/auth/signup/', {
@@ -79,6 +86,7 @@ function Register() {
                 firstName,
                 lastName,
                 email,
+                phone,
                 password
             }),
             headers: {
@@ -134,7 +142,20 @@ function Register() {
                     rules={[{ type: 'email', required: true, message:"Email is required" }]}>
                     <Input />
                 </Form.Item>
-
+                <Form.Item
+                    name="phone"
+                    label="Phone Number"
+                    value={phone}
+                    onChange={(e) => setPhone(e.taget.value)}
+                    rules={[
+                    {
+                        required: true,
+                        message: 'Please input your phone number!',
+                    },
+                    ]}
+                >
+                    <Input/>
+                </Form.Item>
 
                 <Form.Item 
                     name="password" 
