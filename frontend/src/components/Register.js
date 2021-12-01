@@ -146,7 +146,7 @@ function Register() {
                     name="phone"
                     label="Phone Number"
                     value={phone}
-                    onChange={(e) => setPhone(e.taget.value)}
+                    onChange={(e) => setPhone(e.target.value)}
                     rules={[
                     {
                         required: true,

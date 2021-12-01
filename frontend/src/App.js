@@ -14,6 +14,8 @@ import AboutUs from "./pages/AboutUs";
 import Reservation from "./pages/Reservation";
 import AdminHome from "./pages/AdminHome";
 import MyProfile from "./pages/MyProfile";
+import ProfileEdit from "./pages/ProfileEdit";
+import PasswordEdit from "./pages/PasswordEdit";
 
 
 const { Header, Footer, Content } = Layout;
@@ -41,6 +43,8 @@ function App() {
               <Route exact path="/reservation" component={Reservation} />
               <Route exact path="/adminhome" component={AdminHome} />
               <Route exact path="/myprofile" component={MyProfile} />
+              <Route exact path="/profileedit" component={ProfileEdit} />
+              <Route exact path="/passwordedit" component={PasswordEdit} />
 
             </Switch>
           </div>

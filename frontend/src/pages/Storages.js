@@ -17,12 +17,12 @@ function Storages() {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const { RangePicker } = DatePicker;
+  console.log(state.auth)
   /*
    if(state.auth.token === null) {
     history.push('/login')
   }
 */
-//console.log(state.auth)
 //console.log(state.auth.user.email);
 
   /* useEffect (() => {
