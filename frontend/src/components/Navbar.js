@@ -2,7 +2,15 @@ import React, {useContext, useState/*,useEffect*/} from 'react';
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
 import { Menu } from 'antd';
-import { UserOutlined, DropboxOutlined, HomeOutlined, InfoOutlined } from '@ant-design/icons';
+import { 
+  UserOutlined, 
+  DropboxOutlined, 
+  HomeOutlined, 
+  InfoCircleOutlined, 
+  LoginOutlined, 
+  LogoutOutlined,
+  SettingOutlined
+} from '@ant-design/icons';
 import {Link} from "react-router-dom";
 import "./Navbar.css";
 import { Context } from "../store";
@@ -62,10 +70,10 @@ const Navbar = () =>  {
               <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
                 Storages
               </Menu.Item>
-              <Menu.Item  key="/aboutus" icon={<InfoOutlined />}><Link to="/aboutus"></Link>
+              <Menu.Item  key="/aboutus" icon={<InfoCircleOutlined />}><Link to="/aboutus"></Link>
                 About Us
               </Menu.Item>
-              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<UserOutlined />}><Link to="/Login"></Link>
+              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<LoginOutlined />}><Link to="/Login"></Link>
                 Login
               </Menu.Item>
               <Menu.Item  style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="/Register" icon={<UserOutlined />}><Link to="/Register"></Link>
@@ -82,10 +90,18 @@ const Navbar = () =>  {
               <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
                 Storages
               </Menu.Item>
-              <Menu.Item key="/aboutus" icon={<InfoOutlined />}><Link to="/aboutus"></Link>
+              <Menu.Item key="/aboutus" icon={<InfoCircleOutlined />}><Link to="/aboutus"></Link>
                 About Us
               </Menu.Item>
-              <Menu.Item style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="x"><Link to="/" onClick={Logout}>Log out</Link></Menu.Item>
+              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<SettingOutlined />}><Link to="/myprofile"></Link>
+                My Profile
+              </Menu.Item>
+              
+              <Menu.Item style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="x" icon={<LogoutOutlined />}>
+                <Link to="/" onClick={Logout}>
+                  Log out
+                </Link>
+              </Menu.Item>
             </>
           }
   

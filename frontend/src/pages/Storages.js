@@ -36,7 +36,10 @@ function Storages() {
     }); 
   },[]);   */
 
-
+  function disabledDate(current) {
+    // Can not select days before today and today
+    return current && current < moment().endOf('day');
+  }
 
 
    async function onChange (dates, dateStrings) {
@@ -113,7 +116,10 @@ function Storages() {
         <p>Here are available storage units by given timeperiod</p>
         <Space className="datepicker" direction="vertical" size={12}>
         <h1>Timeperiod:</h1>
-          <RangePicker size="large"
+          <RangePicker  
+            disabledDate={disabledDate}
+            allowClear={false}
+            size="large"
             ranges={{
               Today: [moment(), moment()],
               'This Month': [moment().startOf('month'), moment().endOf('month')],

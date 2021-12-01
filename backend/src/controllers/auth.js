@@ -36,7 +36,7 @@ exports.login = async (req, res) => {
 
 
 exports.signup = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body
+    const { firstName, lastName, email, phone, password } = req.body
 
     try {
         const user = await User.findOne({ email })
@@ -53,6 +53,7 @@ exports.signup = async (req, res) => {
             firstName,
             lastName,
             email,
+            phone,
             password: hash
         })
 
@@ -60,6 +61,52 @@ exports.signup = async (req, res) => {
         if (!savedUser) throw Error("Error saving user")
 
         res.status(200).json({ message: "User created successfully" })
+    } catch (e) {
+        res.status(400).json({ error: e.message })
+    }
+}
+
+exports.update = async (req, res) => {
+    const { id } = req.params;
+    
+    const user = await User.findOneAndUpdate({ _id: id }, req.body)
+
+    if (!user) res.status(404).send("No user with that id found")
+
+    const updatedUser = await User.findOne({ _id: id })
+
+    res.status(200).send(`Successfully updated the following user: \n ${updatedUser}`)
+
+
+
+
+}
+exports.changepw = async (req, res) => {
+    const { firstName, lastName, email, phone, password } = req.body
+
+    try {
+        const user = await User.findOne({ email })
+
+        if (!user) throw Error("No User with that e-mail found")
+
+        const salt = await bcrypt.genSalt(10)
+        if (!salt) throw Error("Something critical happened 100000000")
+
+        const hash = await bcrypt.hash(password, salt)
+        if (!hash) throw Error("Something critical happened 123172387")
+
+        const UpdatedUser = new User({
+            firstName,
+            lastName,
+            email,
+            phone,
+            password: hash
+        })
+
+        const savedUser = await User.findOneAndUpdate({email: email}, {password: hash})
+        if (!savedUser) throw Error("Error updating password")
+
+        res.status(200).json({ message: "User updated successfully" })
     } catch (e) {
         res.status(400).json({ error: e.message })
     }

@@ -6,9 +6,11 @@ const reservationSchema = new Schema({
     rentalstart: { type: Date },
     rentalend: {type: Date},
     rentinguseremail: {type: String },
-    totalprice: {type: Number}
-
+    totalprice: {type: Number},
+    createdAt: { type: Date, default: Date.now }
 });
+
+
 
 
 

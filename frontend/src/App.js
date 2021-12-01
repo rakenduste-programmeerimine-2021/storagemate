@@ -12,6 +12,8 @@ import Home from "./pages/Home";
 import Storages from "./pages/Storages";
 import AboutUs from "./pages/AboutUs";
 import Reservation from "./pages/Reservation";
+import AdminHome from "./pages/AdminHome";
+import MyProfile from "./pages/MyProfile";
 
 
 const { Header, Footer, Content } = Layout;
@@ -37,6 +39,8 @@ function App() {
               <Route exact path="/storages" component={Storages} />
               <Route exact path="/aboutus" component={AboutUs} />
               <Route exact path="/reservation" component={Reservation} />
+              <Route exact path="/adminhome" component={AdminHome} />
+              <Route exact path="/myprofile" component={MyProfile} />
 
             </Switch>
           </div>

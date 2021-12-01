@@ -6,6 +6,17 @@ exports.getStorages = async (req, res) => {
     res.status(200).send(storages)
 }
 
+exports.getStorageById = async (req, res) => {
+    const { storageid } = req.body  
+
+    const storage = await Storage.findOne({_id: storageid})
+
+    res.status(200).send(storage)
+}
+
+
+
+
 exports.createStorage = async (req, res) => {
     // Saaksite info kätta req.body -st
     const { name, number, volume, floorspace, priceperday, status} = req.body  
