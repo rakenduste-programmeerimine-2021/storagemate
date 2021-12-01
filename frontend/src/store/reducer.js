@@ -1,4 +1,4 @@
-import { STORAGE_ADD, STORAGE_REMOVE, STORAGES_UPDATE, USER_LOGIN, USER_LOGOUT } from "./actions";
+import { STORAGE_ADD, STORAGE_REMOVE, STORAGES_UPDATE, USER_LOGIN, USER_LOGOUT, USER_UPDATE } from "./actions";
 
 const storageReducer = (state, action) => {
   switch(action.type){
@@ -28,6 +28,10 @@ const authReducer = (state, action) => {
   switch(action.type){
     case USER_LOGIN:
       console.log(action.payload.token);
+      console.log(action.payload.email);
+      console.log(action.payload.firstName);
+      console.log(action.payload.phone);
+      
       return {
         ...state,
         
@@ -37,10 +41,23 @@ const authReducer = (state, action) => {
           id: action.payload.id,
           email: action.payload.email,
           firstName: action.payload.firstName,
-          lastName: action.payload.lastName
+          lastName: action.payload.lastName,
+          phone: action.payload.phone,
         }  
       }
       
+    case USER_UPDATE:
+      return {
+        ...state,
+        user: {
+          id: action.payload.id,
+          email: action.payload.email,
+          firstName: action.payload.firstName,
+          lastName: action.payload.lastName,
+          phone: action.payload.phone,
+        }  
+      }
+
     case USER_LOGOUT:
       return {
         ...state,
