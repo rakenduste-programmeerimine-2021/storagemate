@@ -16,6 +16,7 @@ import AdminHome from "./pages/AdminHome";
 import MyProfile from "./pages/MyProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import PasswordEdit from "./pages/PasswordEdit";
+import EditStorage from "./pages/EditStorage";
 //import { Context } from "./store";
 
 
@@ -63,6 +64,7 @@ function App() {
               {/* <Route path="/myprofile" /> {state.auth.token? {MyProfile} : <Redirect to="/login"/>} <Route/> */} 
               <Route exact path="/profileedit" component={ProfileEdit} />
               <Route exact path="/passwordedit" component={PasswordEdit} />
+              <Route exact path="/editstorage" component={EditStorage} />
 
             </Switch>
           </div>

@@ -4,6 +4,9 @@ import {useHistory} from 'react-router-dom'
 import { Descriptions, Button, Row, Col, Tabs, Space, List, Card, Popconfirm } from 'antd';
 import { updateReservations } from '../store/actions';
 import moment from 'moment';
+import { Steps } from 'antd';
+
+const { Step } = Steps;
 const { TabPane } = Tabs;
 
 let data = "";
@@ -229,7 +232,12 @@ function MyProfile() {
                     <p>Rental end:{moment(item.rentalend).utc().format('MM/DD/YYYY')}</p>
                     
                     <p>Total price: {item.totalprice}$</p>
-
+                    <Steps direction="vertical" size="small" progressDot current={4} direction="vertical">
+                    <Step title="Confirmation" description="Waiting on staff to see your reservation" />
+                    <Step title="Payment" description="Your reservation will be confirmed after payment has been confirmed" />
+                    <Step title="Confirmed" description="Your reservation has been successfully confirmed." />
+                    <Step status="error" title="Canceled" description="Has been canceled." />
+                    </Steps>
                     {Date.parse(moment(item.rentalend).utc().format('MM/DD/YYYY')) > Date.now() ?
                       <>
                       <Popconfirm title="Sure to end rental?" 
