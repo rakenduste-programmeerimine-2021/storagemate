@@ -38,16 +38,32 @@ exports.getReservationsByUser = async (req, res) => {
 
 
 exports.createReservation = async (req, res) => {
-    // Saaksite info kätta req.body -st
-    
-    const { storageid, rentalstart, rentalend, rentinguseremail, totalprice } = req.body  
+    // Saaksite info kätte req.body -st
+    console.log(req.body)
+    const { 
+        storageid, 
+        rentalstart, 
+        rentalend, 
+        rentinguseremail, 
+        totalprice,
+        storageName,
+        storageNumber,
+        volume,
+        floorspace,
+        priceperday
+    } = req.body  
     try{
         const newReservation = new Reservation({
             storageid,
             rentalstart,
             rentalend,
             rentinguseremail,
-            totalprice
+            totalprice,
+            storageName,
+            storageNumber,
+            volume,
+            floorspace,
+            priceperday
 
 
         })
@@ -58,7 +74,7 @@ exports.createReservation = async (req, res) => {
         res.status(200).send(`yay ${savedReservation._id}`)
     } catch (e){
         res.status(400).json({ error: e.message }) 
-        alert(e.messasge)
+        alert(e.message)
     }
 }
 exports.updateReservation = async (req, res) => {

@@ -1,4 +1,4 @@
-import { STORAGE_ADD, STORAGE_REMOVE, STORAGES_UPDATE, USER_LOGIN, USER_LOGOUT, USER_UPDATE } from "./actions";
+import { STORAGE_ADD, STORAGE_REMOVE, STORAGES_UPDATE, USER_LOGIN, USER_LOGOUT, USER_UPDATE, RESERVATIONS_UPDATE } from "./actions";
 
 const storageReducer = (state, action) => {
   switch(action.type){
@@ -23,6 +23,32 @@ const storageReducer = (state, action) => {
       return state
   }
 }
+
+
+const reservationReducer = (state, action) => {
+  switch(action.type){
+   /*  case STORAGE_ADD:
+      return {
+        ...state,
+        data: state.data.concat(action.payload)
+      };
+    case STORAGE_REMOVE:
+      
+      return {
+        ...state,
+        data: state.data.filter(post => post.id !== action.payload)
+      } */
+
+    case RESERVATIONS_UPDATE: 
+        return {
+          ...state,
+          data: action.payload
+        }
+    default:
+      return state
+  }
+}
+
 
 const authReducer = (state, action) => {
   switch(action.type){
@@ -64,4 +90,4 @@ const authReducer = (state, action) => {
   }
 }
 
-export { storageReducer, authReducer }
+export { storageReducer, authReducer, reservationReducer }

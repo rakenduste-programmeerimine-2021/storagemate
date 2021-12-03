@@ -7,6 +7,11 @@ const reservationSchema = new Schema({
     rentalend: {type: Date},
     rentinguseremail: {type: String },
     totalprice: {type: Number},
+    storageName: { type: String, },
+    storageNumber: { type: String, },
+    volume: { type: String,},
+    floorspace: { type: String, },
+    priceperday: { type: Number, },
     createdAt: { type: Date, default: Date.now }
 });
 

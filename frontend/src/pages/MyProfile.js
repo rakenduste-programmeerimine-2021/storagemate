@@ -2,10 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store";
 import {useHistory} from 'react-router-dom'
 import { Descriptions, Button, Row, Col, Tabs, Space, List, Card, Popconfirm } from 'antd';
-import { updateStorages } from '../store/actions';
+import { updateReservations } from '../store/actions';
 import moment from 'moment';
 const { TabPane } = Tabs;
-let userReservations = "";
+
 let data = "";
 
 function callback(key) {
@@ -41,64 +41,45 @@ function MyProfile() {
           },
               
         })
-        userReservations = await response.json()
-        console.log(userReservations)
-        const resids =  userReservations.map((singleitem) => {return (singleitem.storageid);} )
-        console.log(resids)
+        data = await response.json()
         
-        data = fulldata.filter(object => resids.includes(object._id))
         console.log(data);
        
-        /// data = storages
-        // userReservations= reservationinfo
-
-
-        /* var merged = .merge(.keyBy(a, 'userId'), .keyBy(b, 'userId'));
-        var values = .values(merged);
-        console.log(values);
- */
-
-        /* var a = [{fname : 'foo'}]
-        var b = [{lname : 'bar'}]
-        var c = [...a, ...b] // output is [{fname : 'foo'},{lname : 'bar'}]*/
-    dispatch(updateStorages(data))
+        
+    dispatch(updateReservations(data))
     setIsLoading(false);
 
 
     })
     
-    },[isLoading]);  
+    },[isLoading]);
+    
+    // siin oli isLoading
 
 
 
 
-    async function handleRentalEnd(ID){
-      console.log(ID)
-      const cardresdata = userReservations.filter(object => object.storageid === ID)
-      
-      console.log(cardresdata);
-      let id =  cardresdata.map((singleitem) => {return (singleitem._id);} )
-      id= id.toString()
-      const rentalstart =  cardresdata.map((singleitem) => {return (singleitem.rentalstart);} )
-      const sdate = Date.parse(rentalstart);
-      const startdate= (moment(sdate).utc().format('MM/DD/YYYY'))
+   
 
-      let finalPrice =  cardresdata.map((singleitem) => {return (singleitem.totalprice);} )
-      finalPrice = finalPrice.toString()
-      let rentinguseremail = cardresdata.map((singleitem) => {return (singleitem.rentinguseremail);} )
-      rentinguseremail= rentinguseremail.toString()
-      
-      console.log(id)
+      async function handleRentalEnd (item){
+      console.log(item._id)
+     
+    
 
       const date= (moment(Date.now()).utc().format('MM/DD/YYYY'))
 
 
       const updatedReservation={
-        storageid: ID,
-        rentalstart: startdate,
+        storageid: item.storageid,
+        rentalstart: item.rentalstart,
         rentalend: date,
-        rentinguseremail: rentinguseremail,
-        totalprice: finalPrice,
+        rentinguseremail: item.rentinguseremail,
+        totalprice: item.totalprice,
+        storageName: item.storageName,
+        storageNumber: item.storageNumber,
+        volume: item.volume,
+        floorspace: item.floorspace,
+        priceperday: item.priceperday
 
       }
       console.log(updatedReservation)
@@ -108,7 +89,7 @@ function MyProfile() {
 
 
 
-      const response = await fetch('http://localhost:8081/api/reservation/update/' + id, {
+      const response = await fetch('http://localhost:8081/api/reservation/update/' + item._id, {
           method: 'PUT',
           body: JSON.stringify(updatedReservation),
           headers: {
@@ -121,7 +102,7 @@ function MyProfile() {
         console.log(data);
     
       if(response.ok){
-          //dispatch(updateStorages(data));
+          //dispatch(updateReservations(data));
           setIsLoading("true");
             //history.push('/myprofile');
       }else{
@@ -133,7 +114,7 @@ function MyProfile() {
 
     }
   
-    function getRentalstart(id){
+    /* function getRentalstart(id){
       console.log(id)
       const cardresdata = userReservations.filter(object => object.storageid === id)
       
@@ -141,7 +122,6 @@ function MyProfile() {
       const rentalstart =  cardresdata.map((singleitem) => {return (singleitem.rentalstart);} )
       const date = Date.parse(rentalstart);
       const startdate= (moment(date).utc().format('MM/DD/YYYY'))
-     
       return startdate ;
 
       
@@ -169,7 +149,7 @@ function MyProfile() {
      
      
       return finalPrice;
-    }
+    } */
 
 
 
@@ -225,7 +205,7 @@ function MyProfile() {
                 xl: 4,
                 xxl: 4,
               }}
-              dataSource={state.storages.data}
+              dataSource={state.reservations.data}
               renderItem={item => (
                 <List.Item>
                   <Card
@@ -240,19 +220,31 @@ function MyProfile() {
                     description="description"
                   >
 
-                    <h2>{item.name}</h2> 
+                    <h2>{item.storageName}</h2> 
                     <p>Volume: {item.volume} </p>
                     <p>Floorspace: {item.floorspace} </p>
                     <p>Price per day: {item.priceperday}$ </p>
                     
-                    <p>Rental start:{getRentalstart(item._id)} </p>
-                    <p>Rental end:{getRentalend(item._id)}</p>
+                    <p>Rental start: {moment(item.rentalstart).utc().format('MM/DD/YYYY')} </p>
+                    <p>Rental end:{moment(item.rentalend).utc().format('MM/DD/YYYY')}</p>
                     
-                    <p>Total price: {getTotalPrice(item._id)}$</p>
+                    <p>Total price: {item.totalprice}$</p>
 
-                    {Date.parse(getRentalend(item._id)) > Date.now() ?
+                    {Date.parse(moment(item.rentalend).utc().format('MM/DD/YYYY')) > Date.now() ?
                       <>
-                      <Popconfirm title="Sure to end rental?" onConfirm= { () => handleRentalEnd(item._id)}>
+                      <Popconfirm title="Sure to end rental?" 
+                        onConfirm= { () => handleRentalEnd( item)}>
+                        { /*  item._id, 
+                          item.storageid, 
+                          item.rentalstart, 
+                          item.rentalend, 
+                          item.rentinguseremail, 
+                          item.totalprice, 
+                          item.storageName, 
+                          item.storageNumber, 
+                          item.volume,
+                          item.floorspace,
+                          item.priceperday  )}>*/}
                       <Button type="primary" block >End rental</Button>
                         
                       </Popconfirm>
