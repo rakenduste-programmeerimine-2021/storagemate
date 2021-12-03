@@ -90,13 +90,14 @@ function Storages() {
   
   }
 
-  function handleReservation(ID, NAME, VOLUME, FLOORSPACE, STATUS, STARTDATE, ENDDATE, PRICEPERDAY, DAYCOUNT ){
+  function handleReservation(ID, NAME, NUMBER, VOLUME, FLOORSPACE, STATUS, STARTDATE, ENDDATE, PRICEPERDAY, DAYCOUNT ){
     console.log(ID);
     console.log(NAME);
+    console.log(NUMBER);
     console.log(VOLUME);
     console.log(FLOORSPACE)
     console.log(STATUS)
-    history.push("/reservation", {id: ID, name: NAME, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE, priceperday: PRICEPERDAY, daycount: DAYCOUNT})
+    history.push("/reservation", {id: ID, name: NAME, number: NUMBER, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE, priceperday: PRICEPERDAY, daycount: DAYCOUNT})
         
 }
 
@@ -168,7 +169,7 @@ function Storages() {
 
                     history.push('/login')
                     : 
-                    handleReservation(item._id, item.name, item.volume, item.floorspace, item.status, startdate, enddate, item.priceperday, daycount)
+                    handleReservation(item._id, item.name, item.number, item.volume, item.floorspace, item.status, startdate, enddate, item.priceperday, daycount)
                   
                     }
                   }  

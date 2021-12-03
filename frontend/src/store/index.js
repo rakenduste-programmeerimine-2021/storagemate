@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { storageReducer, authReducer } from "./reducer";
+import { storageReducer, authReducer, reservationReducer } from "./reducer";
 import combineReducers from "react-combine-reducers"
 
 const initialStorages = {
@@ -11,9 +11,15 @@ const initialAuth = {
   user: null
 }
 
+const initialReservations = {
+  data:[]
+}
+
 const [combinedReducer, initialState] = combineReducers({
   storages: [storageReducer, initialStorages],
-  auth: [authReducer, initialAuth]
+  auth: [authReducer, initialAuth],
+  reservations: [reservationReducer, initialReservations]
+
 })
 
 export const Context = createContext(initialState)

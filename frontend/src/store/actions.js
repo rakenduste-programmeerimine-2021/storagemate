@@ -4,6 +4,7 @@ export const USER_LOGIN = "USER_LOGIN"
 export const USER_LOGOUT = "USER_LOGOUT"
 export const STORAGES_UPDATE = "STORAGES_UPDATE"
 export const USER_UPDATE = "USER_UPDATE"
+export const RESERVATIONS_UPDATE = "RESERVATIONS_UPDATE"
 
 export const addStorage = post => ({
   type: STORAGE_ADD,
@@ -33,3 +34,8 @@ export const updateUser = data => ({
   type: USER_UPDATE,
   payload: data
 }) 
+
+export const updateReservations = array => ({
+  type: RESERVATIONS_UPDATE,
+  payload: array
+})

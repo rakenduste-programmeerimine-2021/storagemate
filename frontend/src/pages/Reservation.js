@@ -21,6 +21,7 @@ function Reservation() {
 
   console.log(useLocation().state.id);
   console.log(useLocation().state.name);
+  console.log(useLocation().state.number);
   console.log(useLocation().state.volume);
   console.log(useLocation().state.floorspace);
   console.log(useLocation().state.status);
@@ -33,7 +34,12 @@ function Reservation() {
   const rentalend = useLocation().state.enddate;
   const rentinguseremail = state.auth.user.email;
   const totalprice = useLocation().state.priceperday * useLocation().state.daycount;
-  
+
+  const storageName = useLocation().state.name;
+  const storageNumber = useLocation().state.number;
+  const volume = useLocation().state.volume;
+  const floorspace = useLocation().state.floorspace;
+  const priceperday = useLocation().state.priceperday;
 
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);
@@ -41,9 +47,9 @@ function Reservation() {
       
   <div>
     Your Reservation is<br/>
-    Storage name: {useLocation().state.name} <br/>
-    Rental start: {useLocation().state.startdate}<br/>
-    Rental end: {useLocation().state.enddate}<br/>
+    Storage name: {storageName} <br/>
+    Rental start: {rentalstart}<br/>
+    Rental end: {rentalend}<br/>
     Final price: {totalprice}$<br/>
   </div>
   
@@ -75,20 +81,30 @@ function Reservation() {
         rentalstart,
         rentalend,
         rentinguseremail,
-        totalprice
+        totalprice,
+        storageName,
+        storageNumber,
+        volume,
+        floorspace,
+        priceperday
+
       }),
       headers: {
           'Content-Type': 'application/json'
       },
       
   })
-
-    setModalText('Your reservation has been confirmed!');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-    }, 2000);
+  if (response.ok){ 
+      setModalText('Your reservation has been confirmed!');
+      setConfirmLoading(true);
+      setTimeout(() => {
+        setVisible(false);
+        setConfirmLoading(false);
+      }, 2000);
+  }
+  else{
+    setModalText('Reservation failed')
+  }
   };
 
 
