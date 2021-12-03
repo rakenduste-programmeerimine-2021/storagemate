@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import { Context } from "../store";
-import {useHistory, useLocation} from 'react-router-dom'
+import { useLocation, useHistory} from 'react-router-dom'
 import { Descriptions, Badge } from 'antd';
 import { Row, Col } from 'antd';
 import { Modal, Button } from 'antd';
@@ -12,7 +12,12 @@ function Reservation() {
 
 
   const [state, dispatch] = useContext(Context);
-  //const history = useHistory();
+  const history = useHistory();
+
+  if(state.auth.token === null) {
+    history.push('/login')
+  }
+
 
   console.log(useLocation().state.id);
   console.log(useLocation().state.name);
@@ -28,9 +33,7 @@ function Reservation() {
   const rentalend = useLocation().state.enddate;
   const rentinguseremail = state.auth.user.email;
   const totalprice = useLocation().state.priceperday * useLocation().state.daycount;
-  /*if(state.auth.token === null) {
-    history.push('/login')
-  }*/
+  
 
   const [visible, setVisible] = React.useState(false);
   const [confirmLoading, setConfirmLoading] = React.useState(false);

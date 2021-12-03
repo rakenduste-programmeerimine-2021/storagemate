@@ -27,11 +27,6 @@ const storageReducer = (state, action) => {
 const authReducer = (state, action) => {
   switch(action.type){
     case USER_LOGIN:
-      console.log(action.payload.token);
-      console.log(action.payload.email);
-      console.log(action.payload.firstName);
-      console.log(action.payload.phone);
-      
       return {
         ...state,
         

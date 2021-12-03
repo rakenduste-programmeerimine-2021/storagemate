@@ -64,14 +64,15 @@ exports.createReservation = async (req, res) => {
 exports.updateReservation = async (req, res) => {
 
     const { id } = req.params;
-
+    console.log(req.body);
+    console.log(id);
     const reservation = await Reservation.findOneAndUpdate({ _id: id }, req.body)
 
     if (!reservation) res.status(404).send("No reservation with that id found")
 
     const updatedReservation = await Reservation.findOne({ _id: id })
 
-    res.status(200).send(`Successfully updated the following Reservation: \n ${updatedReservation}`)
+    res.status(200).send(updatedReservation)
 }
 
 
@@ -85,3 +86,11 @@ exports.deleteReservation = async (req, res) => {
 
     res.status(200).send(`Successfully deleted the following reservation: \n ${Reservation}`)
 }   
+
+
+exports.getReservationById = async (req, res) => {
+    const {id} = req.params;
+    const reservation = await Reservation.findOne({ _id: id })
+
+    res.status(200).send(reservation)
+}

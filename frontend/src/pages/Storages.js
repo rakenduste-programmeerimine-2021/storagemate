@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Context } from "../store";
 import { useHistory } from "react-router-dom";
 import { updateStorages } from '../store/actions';
