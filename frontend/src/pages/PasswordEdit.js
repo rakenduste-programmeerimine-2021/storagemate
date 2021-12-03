@@ -1,8 +1,8 @@
-import React , { useContext, useState, useRef } from "react";
+import React , { useContext, useState } from "react";
 import { Context } from "../store";
 //import { updateUser } from "../store/actions";
 import { Form, Input, Button, Row, Col } from 'antd';
-import {useHistory, useLocation} from 'react-router-dom'
+import {useHistory} from 'react-router-dom'
 import './ProfileEdit.css';
 
 
@@ -48,6 +48,12 @@ const layout = {
     function PasswordEdit() {
         const history = useHistory();
         const [state, dispatch] = useContext(Context);
+
+        if(state.auth.token === null) {
+            history.push('/login')
+        }
+
+
         const [oldpassword, setOldpassword] = useState('')
         const [password, setPassword] = useState('')
         const [confirmpassword, setConfirmpassword] = useState('')

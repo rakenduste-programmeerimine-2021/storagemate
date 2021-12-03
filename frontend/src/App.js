@@ -16,11 +16,28 @@ import AdminHome from "./pages/AdminHome";
 import MyProfile from "./pages/MyProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import PasswordEdit from "./pages/PasswordEdit";
+//import { Context } from "./store";
 
 
 const { Header, Footer, Content } = Layout;
 
 function App() {
+  //const [state, dispatch] = useContext(Context);
+
+
+
+  /* function requireAuth() {
+    if (state.auth.token == null) {
+      Redirect to= "/login"
+    }
+    
+  }
+   */
+{/* <Route exact path="/">
+  {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
+</Route> */}
+
+
 
   return (
 
@@ -42,7 +59,8 @@ function App() {
               <Route exact path="/aboutus" component={AboutUs} />
               <Route exact path="/reservation" component={Reservation} />
               <Route exact path="/adminhome" component={AdminHome} />
-              <Route exact path="/myprofile" component={MyProfile} />
+              <Route path="/myprofile" component={MyProfile} />
+              {/* <Route path="/myprofile" /> {state.auth.token? {MyProfile} : <Redirect to="/login"/>} <Route/> */} 
               <Route exact path="/profileedit" component={ProfileEdit} />
               <Route exact path="/passwordedit" component={PasswordEdit} />
 
