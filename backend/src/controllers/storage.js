@@ -50,10 +50,14 @@ exports.updateStorage = async (req, res) => {
 
 }
 
+
+
+
+
 exports.deleteStorage = async (req, res) => {
     const { id } = req.params;
 
-    const Storage = await Storage.findOneAndDelete({ _id: id })
+    const storage = await Storage.findOneAndDelete({ _id: id })
 
     if (!storage) res.status(404).send("No storage with that id found")
 
