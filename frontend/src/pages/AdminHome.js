@@ -4,6 +4,7 @@ import { updateStorages, removeStorage } from '../store/actions';
 import { Context } from "../store";
 import { useHistory } from "react-router-dom";
 import AdminReservations from "../components/AdminReservations"
+import NewStorageAdd from './NewStorageAdd';
 
 const { TabPane } = Tabs;
 
@@ -134,6 +135,9 @@ const AdminHome = () => {
 
             <Tabs onChange={callback} type="card">
                 <TabPane tab="Storages" key="1">
+                    <Button onClick={() => { history.push('/newstorageadd')}} type="primary" style={{ marginBottom: 16 }}>
+                        Add new storage
+                    </Button>
                     <Table 
                         dataSource={state.storages.data} 
                         columns={columns} 
