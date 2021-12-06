@@ -1,8 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
-import { Table, Popconfirm, Space } from 'antd';
+import { Table, Popconfirm, Space, Tabs, Button } from 'antd';
 import { updateStorages, removeStorage } from '../store/actions';
 import { Context } from "../store";
 import { useHistory } from "react-router-dom";
+import AdminReservations from "../components/AdminReservations"
+
+const { TabPane } = Tabs;
+
+
+
+function callback(key) {
+    console.log(key);
+  }
+
 
 
 const AdminHome = () => {
@@ -49,9 +59,9 @@ const AdminHome = () => {
         editable: false,
         },
         {
-          title: 'Priceperday',
-          dataIndex: 'priceperday',
-          editable: false,
+        title: 'Priceperday',
+        dataIndex: 'priceperday',
+        editable: false,
         },
         {
             title: 'Action',
@@ -60,11 +70,10 @@ const AdminHome = () => {
                 <div className= "action">
                 <Space>   
                 <Popconfirm title="Sure to delete?" onConfirm= { () => handleDelete(record._id)}>
-                <a>Delete</a>
+                <Button type="primary" block >Delete</Button>
                 </Popconfirm>
-                
                 <Popconfirm title="Sure to edit?" onConfirm= { () => handleEdit(record._id, record.name, record.number, record.volume, record.floorspace, record.priceperday)}>
-                <a>Edit</a>
+                <Button type="primary" block >Edit</Button>
                 </Popconfirm>
                 </Space>
                 </div>
@@ -122,12 +131,25 @@ const AdminHome = () => {
     return(
         <div>
             <h1>Admin edit</h1>
-            <Table 
-                dataSource={state.storages.data} 
-                columns={columns} 
-                rowKey="_id" 
-                bordered
-            />
+
+            <Tabs onChange={callback} type="card">
+                <TabPane tab="Storages" key="1">
+                    <Table 
+                        dataSource={state.storages.data} 
+                        columns={columns} 
+                        rowKey="_id" 
+                        bordered
+                    />
+                </TabPane>
+                <TabPane tab="Reservations" key="2">
+                    <AdminReservations />
+                    
+
+
+
+
+                </TabPane>
+            </Tabs>    
         </div>
     )
 }    
