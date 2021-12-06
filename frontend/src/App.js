@@ -17,6 +17,7 @@ import MyProfile from "./pages/MyProfile";
 import ProfileEdit from "./pages/ProfileEdit";
 import PasswordEdit from "./pages/PasswordEdit";
 import EditStorage from "./pages/EditStorage";
+import NewStorageAdd from "./pages/NewStorageAdd";
 //import { Context } from "./store";
 
 
@@ -65,6 +66,7 @@ function App() {
               <Route exact path="/profileedit" component={ProfileEdit} />
               <Route exact path="/passwordedit" component={PasswordEdit} />
               <Route exact path="/editstorage" component={EditStorage} />
+              <Route exact path="/newstorageadd" component={NewStorageAdd} />
 
             </Switch>
           </div>
