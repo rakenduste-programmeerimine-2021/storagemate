@@ -10,59 +10,19 @@ exports.getReservationsByDate = async (req, res) => {
 
     const { startdate, enddate } = req.body 
     const reservations = await Reservation.find(
-         { $or: 
+        { $or: 
             [ {rentalstart: {$gte:startdate, $lte: enddate}},
-            {rentalend: {$gte:startdate, $lte: enddate}},
-            { $and: 
-                [ {rentalstart: {$gte:startdate, $lte: enddate}},
-                  {rentalend: {$gte: enddate, $lte: enddate}}
+              {rentalend: {$gte:startdate, $lte: enddate}},
+              { $and: 
+                [ {rentalstart: {$lte:startdate}},
+                  {rentalend: {$gte: enddate}}
                 ]} 
         ]})
     
-    console.log(reservations);
     
     const resids =  reservations.map((singleitem) => {return (singleitem.storageid);} );
 
-    console.log(resids);
 
-
-   
-
-    /* db.users.find({todos: {$elemMatch: {date: { $gte: start, $lt: end }}}}, {'todos':1}).pretty()
-
-const reservations = await Reservation.find( { $or: [ $and {{rentalstart: {$lte:startdate, $gte: enddate}},{rentalend: {$lte:startdate, $lte: enddate}}], {rentalend: {$lte:startdate, $lte: enddate}}]})
-    const reservations = await Reservation.find( { $or: [ {{{startdate}: {$gte:rentalstart, $gte: rentalend}}}, {enddate: {$lte:rentalstart, $lte: rentalend}}]})
-{ '$or': 
-           [ { '$and': 
-                [ { location: { '$in': [ ObjectId("588054c63879f2e767a1d553")  ] } },
-                  { is_ryward: 1 },
-                  { points_reqiured_to_redeem_reward: { '$lte': 500 } } ] },
-             { '$and': 
-                [ { location: { '$in': [ ObjectId("588054c63879f2e767a1d553")  ] } },
-                  { is_freebie: 1 } ] } ] }
-        )
-
-
-const reservations = await Reservation.find(
-         { $or: 
-            [ {rentalstart: {$gte:startdate, $lte: enddate}},
-            {rentalend: {$gte:startdate, $lte: enddate}},
-            { $and: 
-                [ {rentalstart: {$gte:startdate, $lte: enddate}},
-                  {rentalend: {$lte: enddate, $gte: startdate}}
-                ]} 
-        ]})
-    
-
-
-
-
-
-
-const reservations = await Reservation.find( { $or: [ {rentalstart: {$gte:startdate, $lte: enddate}}, {rentalend: {$gte:startdate, $lte: enddate}}]})
-
-    db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
-    db.foo.find({a: { $not: {$elemMatch: {n: 1, r: 10 } } } }) */
     res.status(200).send(resids)
 }
 
@@ -72,17 +32,12 @@ exports.getReservationsByUser = async (req, res) => {
 
     const reservationsByUser = await Reservation.find( {rentinguseremail: email });
 
-    /* db.users.find({todos: {$elemMatch: {date: { $gte: start, $lt: end }}}}, {'todos':1}).pretty()
-    db.inventory.find( { $or: [ { status: "A" }, { qty: { $lt: 30 } } ] } )
-    db.foo.find({a: { $not: {$elemMatch: {n: 1, r: 10 } } } }) */
     res.status(200).send(reservationsByUser)
 }
 
 
 
 exports.createReservation = async (req, res) => {
-    // Saaksite info kätte req.body -st
-    console.log(req.body)
     const { 
         storageid, 
         rentalstart, 

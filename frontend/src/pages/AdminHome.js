@@ -21,10 +21,6 @@ const AdminHome = () => {
     const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
 
-    /*f(state.auth.token === null) {
-        history.push('/login')
-    }*/
-
     useEffect (() => {
         fetch('http://localhost:8081/api/storage').then(res => {
             return res.json();
@@ -84,18 +80,6 @@ const AdminHome = () => {
     
     ];
 
-
-
-    
-
-
-
-
-
-
-
-
-
     async function handleDelete (id)  {
         console.log(id)
         dispatch(removeStorage(id));
@@ -114,12 +98,8 @@ const AdminHome = () => {
         })
     }
 
-
-    /* (record._id, record.name, record.number, record.volume, record.floorspace, record.priceperday)}> */
     function handleEdit(ID, NAME, NUMBER, VOLUME, FLOORSPACE, PRICEPERDAY ){
-       
         history.push("/EditStorage", {id: ID, name: NAME, number: NUMBER, volume: VOLUME, floorspace: FLOORSPACE, priceperday: PRICEPERDAY})
-            
     }
 
 

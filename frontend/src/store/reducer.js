@@ -64,6 +64,7 @@ const authReducer = (state, action) => {
           firstName: action.payload.firstName,
           lastName: action.payload.lastName,
           phone: action.payload.phone,
+          isAdmin: action.payload.isAdmin,
         }  
       }
       
