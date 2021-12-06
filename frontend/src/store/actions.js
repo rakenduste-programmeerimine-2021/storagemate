@@ -5,6 +5,7 @@ export const USER_LOGOUT = "USER_LOGOUT"
 export const STORAGES_UPDATE = "STORAGES_UPDATE"
 export const USER_UPDATE = "USER_UPDATE"
 export const RESERVATIONS_UPDATE = "RESERVATIONS_UPDATE"
+export const RESERVATION_REMOVE = "RESERVATION_REMOVE"
 
 export const addStorage = post => ({
   type: STORAGE_ADD,
@@ -38,4 +39,8 @@ export const updateUser = data => ({
 export const updateReservations = array => ({
   type: RESERVATIONS_UPDATE,
   payload: array
+})
+export const removeReservation = id => ({
+  type: RESERVATION_REMOVE,
+  payload: id
 })
