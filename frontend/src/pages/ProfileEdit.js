@@ -80,25 +80,14 @@ function ProfileEdit() {
           console.log(data.message)
         if(response.ok){
               dispatch(updateUser(data));
+              form.resetFields();
               history.push('/myprofile');
         }else{
           alert("Saving changes failed!")
         };
-          
-          
-      
-
-          
         
-        form.resetFields();
-
-
-
-
-    // dispatch(addPost(newPost));
     };
 
-    //console.log({ inputRef });
 
     return (
 

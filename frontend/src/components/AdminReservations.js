@@ -49,11 +49,14 @@ const AdminReservations = () => {
         title: 'Start date',
         dataIndex: 'rentalstart',
         editable: false,
+        render: (_,item) => (getFullDate(item.rentalstart))
         },
         {
         title: 'End date',
         dataIndex: 'rentalend',
         editable: false,
+        render: (_,item) => (getFullDate(item.rentalend))
+
         },
         {
         title: 'Renting user',
@@ -89,7 +92,14 @@ const AdminReservations = () => {
 
 
 
-    
+    const getFullDate = (e) => {
+        console.log(e)
+        console.log(moment(e).utc().format('MM/DD/YYYY'))
+        return (moment(e).utc().format('MM/DD/YYYY'))
+        
+        
+      
+      };
 
 
     async function handleEnd (item){

@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Layout } from 'antd';
-import Greeting from "./pages/Greeting";
 import 'antd/dist/antd.css';
 import "./App.css";
 import Navbar from "./components/Navbar";
@@ -18,29 +17,14 @@ import ProfileEdit from "./pages/ProfileEdit";
 import PasswordEdit from "./pages/PasswordEdit";
 import EditStorage from "./pages/EditStorage";
 import NewStorageAdd from "./pages/NewStorageAdd";
-//import { Context } from "./store";
+import PrivateRoute from './components/PrivateRoute'
+import AdminRoute from './components/AdminRoute'
+
 
 
 const { Header, Footer, Content } = Layout;
 
 function App() {
-  //const [state, dispatch] = useContext(Context);
-
-
-
-  /* function requireAuth() {
-    if (state.auth.token == null) {
-      Redirect to= "/login"
-    }
-    
-  }
-   */
-{/* <Route exact path="/">
-  {loggedIn ? <Redirect to="/dashboard" /> : <PublicHomePage />}
-</Route> */}
-
-
-
   return (
 
     <BrowserRouter>
@@ -52,22 +36,19 @@ function App() {
           <div className="site-layout-content">
 
             <Switch>
-              <Route exact path="/Greeting" component={Greeting} />
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/adminlogin" component={AdminLogin} />
               <Route exact path="/" component={Home} />
               <Route exact path="/storages" component={Storages} />
               <Route exact path="/aboutus" component={AboutUs} />
-              <Route exact path="/reservation" component={Reservation} />
-              <Route exact path="/adminhome" component={AdminHome} />
-              <Route path="/myprofile" component={MyProfile} />
-              {/* <Route path="/myprofile" /> {state.auth.token? {MyProfile} : <Redirect to="/login"/>} <Route/> */} 
-              <Route exact path="/profileedit" component={ProfileEdit} />
-              <Route exact path="/passwordedit" component={PasswordEdit} />
-              <Route exact path="/editstorage" component={EditStorage} />
-              <Route exact path="/newstorageadd" component={NewStorageAdd} />
-
+              <PrivateRoute exact path="/reservation" component={Reservation} />
+              <AdminRoute exact path="/adminhome" component={AdminHome} />
+              <PrivateRoute path="/myprofile" component={MyProfile} />
+              <PrivateRoute exact path="/profileedit" component={ProfileEdit} />
+              <PrivateRoute exact path="/passwordedit" component={PasswordEdit} />
+              <AdminRoute exact path="/editstorage" component={EditStorage} />
+				      <AdminRoute exact path="/newstorageadd" component={NewStorageAdd} />
             </Switch>
           </div>
         </Content>

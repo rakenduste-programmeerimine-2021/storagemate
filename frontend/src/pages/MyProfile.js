@@ -21,142 +21,85 @@ function MyProfile() {
   const history = useHistory();
   const [state, dispatch] = useContext(Context);
 
-  /* if(state.auth.token === null) {
-    history.push('/login')
-  } */
-
-
-
   useEffect ( async () => {
     fetch('http://localhost:8081/api/storage').then(res => {
-        return res.json();
+      return res.json();
     }).then(async (fulldata) =>{
-        console.log(fulldata);
-        const email = state.auth.user.email
-        const response =  await fetch('http://localhost:8081/api/reservation/byuser/', {
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-                  
-          }),
-          headers: {
-            'Content-Type': 'application/json'
-          },
-              
-        })
-        data = await response.json()
-        
-        console.log(data);
-       
-        
-    dispatch(updateReservations(data))
-    setIsLoading(false);
+      console.log(fulldata);
+      const email = state.auth.user.email
+      const response =  await fetch('http://localhost:8081/api/reservation/byuser/', {
+        method: 'POST',
+        body: JSON.stringify({
+          email,
+                
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        },
+            
+      })
+      data = await response.json()
+      
+      console.log(data);
 
+      dispatch(updateReservations(data))
+      setIsLoading(false);
 
     })
-    
-    },[isLoading]);
-    
-    // siin oli isLoading
-
-
-
-
-   
-
-      async function handleRentalEnd (item){
-      console.log(item._id)
-     
+  },[isLoading]);
     
 
-      const date= (moment(Date.now()).utc().format('MM/DD/YYYY'))
-
-
-      const updatedReservation={
-        storageid: item.storageid,
-        rentalstart: item.rentalstart,
-        rentalend: date,
-        rentinguseremail: item.rentinguseremail,
-        totalprice: item.totalprice,
-        storageName: item.storageName,
-        storageNumber: item.storageNumber,
-        volume: item.volume,
-        floorspace: item.floorspace,
-        priceperday: item.priceperday
-
-      }
-      console.log(updatedReservation)
-
-
-
-
-
-
-      const response = await fetch('http://localhost:8081/api/reservation/update/' + item._id, {
-          method: 'PUT',
-          body: JSON.stringify(updatedReservation),
-          headers: {
-              'Content-Type':'application/json',
-              'Accept': 'application/json'
-          }
-      });
-      const data = await response.json();
+  async function handleRentalEnd (item){
+    console.log(item._id)
     
-        console.log(data);
-    
-      if(response.ok){
-          //dispatch(updateReservations(data));
-          setIsLoading("true");
-            //history.push('/myprofile');
-      }else{
-        alert("Saving changes failed!")
-      };
-        
-
-
-
-    }
   
-    /* function getRentalstart(id){
-      console.log(id)
-      const cardresdata = userReservations.filter(object => object.storageid === id)
-      
-      console.log(cardresdata);
-      const rentalstart =  cardresdata.map((singleitem) => {return (singleitem.rentalstart);} )
-      const date = Date.parse(rentalstart);
-      const startdate= (moment(date).utc().format('MM/DD/YYYY'))
-      return startdate ;
 
-      
-      
+    const date= (moment(Date.now()).utc().format('MM/DD/YYYY'))
+
+
+    const updatedReservation={
+      storageid: item.storageid,
+      rentalstart: item.rentalstart,
+      rentalend: date,
+      rentinguseremail: item.rentinguseremail,
+      totalprice: item.totalprice,
+      storageName: item.storageName,
+      storageNumber: item.storageNumber,
+      volume: item.volume,
+      floorspace: item.floorspace,
+      priceperday: item.priceperday
+
     }
+    
 
-    function getRentalend(id){
-      console.log(id)
-      const cardresdata = userReservations.filter(object => object.storageid === id)
+
+
+
+
+
+    const response = await fetch('http://localhost:8081/api/reservation/update/' + item._id, {
+        method: 'PUT',
+        body: JSON.stringify(updatedReservation),
+        headers: {
+            'Content-Type':'application/json',
+            'Accept': 'application/json'
+        }
+    });
+    const data = await response.json();
+  
+      console.log(data);
+  
+    if(response.ok){
+        //dispatch(updateReservations(data));
+        setIsLoading("true");
+          //history.push('/myprofile');
+    }else{
+      alert("Saving changes failed!")
+    };
       
-      console.log(cardresdata);
-      const rentalend =  cardresdata.map((singleitem) => {return (singleitem.rentalend);} )
-      const date = Date.parse(rentalend);
-      const enddate= (moment(date).utc().format('MM/DD/YYYY'))
-     
-      return enddate;
-      
-    }
-    function getTotalPrice(id){
-      console.log(id)
-      const cardresdata = userReservations.filter(object => object.storageid === id)
-      
-      console.log(cardresdata);
-      const finalPrice =  cardresdata.map((singleitem) => {return (singleitem.totalprice);} )
-     
-     
-      return finalPrice;
-    } */
-
-
-
-
+  }
+  
+  
   return (
     
     <div>
@@ -242,18 +185,8 @@ function MyProfile() {
                       <>
                       <Popconfirm title="Sure to end rental?" 
                         onConfirm= { () => handleRentalEnd( item)}>
-                        { /*  item._id, 
-                          item.storageid, 
-                          item.rentalstart, 
-                          item.rentalend, 
-                          item.rentinguseremail, 
-                          item.totalprice, 
-                          item.storageName, 
-                          item.storageNumber, 
-                          item.volume,
-                          item.floorspace,
-                          item.priceperday  )}>*/}
-                      <Button type="primary" block >End rental</Button>
+                        
+                        <Button type="primary" block >End rental</Button>
                         
                       </Popconfirm>
                       </>
@@ -266,15 +199,11 @@ function MyProfile() {
                     
                 </List.Item>
               )}
-
             />
             </>
             :
             <>
             <h1 className="message" >Loading...</h1>
-          
-            
-            
             </>
             }
           

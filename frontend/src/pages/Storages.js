@@ -18,26 +18,9 @@ function Storages() {
   const history = useHistory();
   const { RangePicker } = DatePicker;
   console.log(state.auth)
-  /*
-   if(state.auth.token === null) {
-    history.push('/login')
-  }
-*/
-//console.log(state.auth.user.email);
-
-  /* useEffect (() => {
-    fetch('http://localhost:8081/api/storage').then(res => {
-        return res.json();
-    }).then(async (data) =>{
-        console.log(data);
-        await dispatch(updateStorages(data))
-        console.log(state.storages.data)
-        setIsLoading(false);
-    }); 
-  },[]);   */
+  
 
   function disabledDate(current) {
-    // Can not select days before today and today
     return current && current < moment().endOf('day');
   }
 
@@ -99,15 +82,7 @@ function Storages() {
     console.log(STATUS)
     history.push("/reservation", {id: ID, name: NAME, number: NUMBER, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE, priceperday: PRICEPERDAY, daycount: DAYCOUNT})
         
-}
-
-
-
-
-/* 
-  if (isLoading) {
-    return (<div>Loading...</div>)
-  }  */
+  }
 
 
   return (

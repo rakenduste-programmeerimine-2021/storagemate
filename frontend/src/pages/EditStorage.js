@@ -13,7 +13,7 @@ const layout = {
     span: 16,
   },
 };
-/* eslint-disable no-template-curly-in-string */
+
 
 const validateMessages = {
   required: '${label} is required!',
@@ -25,7 +25,7 @@ const validateMessages = {
     range: '${label} must be between ${min} and ${max}',
   },
 };
-/* eslint-enable no-template-curly-in-string */
+
 
 
 
@@ -39,8 +39,6 @@ function EditStorage() {
     console.log(useLocation().state.volume);
     console.log(useLocation().state.floorspace);
     console.log(useLocation().state.priceperday);
-  
-
 
   const [form] = Form.useForm();
   const [name, setName] = useState(useLocation().state.name);
@@ -57,9 +55,6 @@ function EditStorage() {
   
   const id = useLocation().state.id;
 
-  /*if(state.auth.token === null) {
-    history.push('/login')
-  }*/                               
 
 
 
@@ -90,20 +85,11 @@ function EditStorage() {
             history.push('/adminhome');
         };
         
-        
-    
-
-        
       
       form.resetFields();
-
-
-
-
-   // dispatch(addPost(newPost));
   };
 
-  //console.log({ inputRef });
+ 
 
   return (
 
@@ -215,18 +201,6 @@ function EditStorage() {
           </Form>
           </Col>
         </Row>
-    
-    {/*  {state.posts.data.map((e) => (
-        <li key={e.id}>
-          {e.id} {e.title}
-          <span
-            style={{ cursor: "pointer" }}
-            onClick={() => dispatch(removePost(e.id))}
-          >
-            &#128540;
-          </span>
-        </li>
-      ))} */}
     </div>
   );
 }
