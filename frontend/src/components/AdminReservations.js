@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import { Table, Popconfirm, Button } from 'antd';
-import { updateReservations, removeStorage } from '../store/actions';
+import { updateReservations,  } from '../store/actions';
 import { Context } from "../store";
 import { useHistory } from "react-router-dom";
 import moment from 'moment';
@@ -17,9 +17,6 @@ const AdminReservations = () => {
     const [isLoading, setIsLoading] = useState(true);
     const history = useHistory();
 
-    /*f(state.auth.token === null) {
-        history.push('/login')
-    }*/
 
     useEffect (() => {
         fetch('http://localhost:8081/api/reservation').then(res => {
@@ -128,9 +125,6 @@ const AdminReservations = () => {
                 'Accept': 'application/json'
             }
         });
-        //const data = await response.json();
-        
-        //console.log(data);
         
         if(response.ok){
             fetch('http://localhost:8081/api/reservation').then(res => {

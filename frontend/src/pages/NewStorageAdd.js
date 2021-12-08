@@ -1,4 +1,4 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../store";
 import { addStorage } from "../store/actions";
 import { Form, Input, Button, Row, Col } from 'antd';
@@ -32,7 +32,7 @@ const validateMessages = {
 
 
 function NewStorageAdd() {
-  const [state, dispatch] = useContext(Context);
+  const [, dispatch] = useContext(Context);
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [volume, setVolume] = useState("");

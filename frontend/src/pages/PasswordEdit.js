@@ -46,7 +46,7 @@ const layout = {
     
     function PasswordEdit() {
         const history = useHistory();
-        const [state, dispatch] = useContext(Context);
+        const [state, ] = useContext(Context);
 
         if(state.auth.token === null) {
             history.push('/login')

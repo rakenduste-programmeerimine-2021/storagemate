@@ -11,7 +11,7 @@ import { Modal, Button } from 'antd';
 function Reservation() {
 
 
-  const [state, dispatch] = useContext(Context);
+  const [state, ] = useContext(Context);
   const history = useHistory();
 
   if(state.auth.token === null) {
