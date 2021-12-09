@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Row, Col } from 'antd';
+import { Form, Input, Button, Checkbox, Row, Col, Layout } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import './Login.css';
 import { Context } from "../store";
@@ -57,7 +57,7 @@ const Login = () => {
         
 
     return (
-        <div>
+        <Layout style={{background:"white"}}>
             <h1>Login</h1>
         <Row className="row"  justify="center" align="center">
             <Col flex="auto" justify= "center" align="center">
@@ -121,7 +121,7 @@ const Login = () => {
                 </Form>
             </Col>
         </Row>    
-        </div>
+        </Layout>
     );
 };
 

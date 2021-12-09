@@ -33,13 +33,6 @@ const validateMessages = {
 
 function EditStorage() {
 
-
-    console.log(useLocation().state.name);
-    console.log(useLocation().state.number);
-    console.log(useLocation().state.volume);
-    console.log(useLocation().state.floorspace);
-    console.log(useLocation().state.priceperday);
-
   const [form] = Form.useForm();
   const [name, setName] = useState(useLocation().state.name);
   const [number, setNumber] = useState(useLocation().state.number);
