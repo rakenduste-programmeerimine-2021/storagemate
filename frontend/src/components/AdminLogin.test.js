@@ -1,6 +1,6 @@
 import React from "react";
 import { render, screen } from "@testing-library/react"
-import AboutUs from "./AboutUs";
+import AdminLogin from "./AdminLogin";
 import { Context } from "../store";
 import { Layout } from "antd";
 
@@ -13,7 +13,7 @@ window.matchMedia = window.matchMedia || function() {
 };
 
 
-describe (' About us page', () => {
+describe (' Admin login page', () => {
     const context = {
         auth: {
             token: null,
@@ -22,24 +22,24 @@ describe (' About us page', () => {
     }
     const dispatch = jest.fn()
 
-    it('Checks if about us storagemate header exists ', () => {  
+    it('Checks if Admin login exists ', () => {  
         render((
             <Context.Provider value={[context, dispatch]}>
-                <AboutUs />
+                <AdminLogin />
             </Context.Provider>
         ),Layout)
-        const AboutUsStorage = screen.queryByText("About Storagemate")
-        expect(AboutUsStorage).not.toBeNull()
+        const AdminLoginExist = screen.queryByText("Admin Login")
+        expect(AdminLoginExist).not.toBeNull()
     })
 
-    it('Checks if about us description exists ', () => {  
+    it('Checks if Admin Log in button exist ', () => {  
         render((
             <Context.Provider value={[context, dispatch]}>
-                <AboutUs />
+                <AdminLogin />
             </Context.Provider>
         ),Layout)
-        const AboutUsDescription = screen.queryByText("An award-winning company that has a great outlook!")
-        expect(AboutUsDescription ).not.toBeNull()
+        const AdminLoginExist = screen.queryByText("Log in")
+        expect(AdminLoginExist).not.toBeNull()
     })
 
 });

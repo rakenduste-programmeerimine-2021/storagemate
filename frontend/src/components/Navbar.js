@@ -45,6 +45,7 @@ const Navbar = () =>  {
   }    
 
     return (
+    
       <>
         <div className="logo">
           <Link to="/">
@@ -101,7 +102,9 @@ const Navbar = () =>  {
                   Log out
                 </Link>
               </Menu.Item>
+              
             </>
+            
           }
   
         </Menu>
