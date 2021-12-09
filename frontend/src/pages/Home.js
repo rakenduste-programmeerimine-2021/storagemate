@@ -1,5 +1,5 @@
 import React from "react";
-import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, Move, MoveIn, MoveOut, Sticky, StickyIn, ZoomIn } from "react-scroll-motion";
+import { Animator, ScrollContainer, ScrollPage, MoveOut } from "react-scroll-motion";
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import "./Home.css";
@@ -10,21 +10,23 @@ import { useHistory } from "react-router-dom";
 import ReactPlayer from 'react-player';
 import CurvedArrow from "react-curved-arrow";
 
-
 const content = [
 	{
+    id:"1",
 		title: 'Security',
 		description:
 		'Cheap and reasonable prices for maximum security.',
 		image: 'https://image.freepik.com/free-vector/cloud-computing-security-abstract-concept-illustration_335657-2105.jpg',
 	},
 	{
+    id:"2",
 		title: 'Fast and easy reservation system',
 		description:
 		'On storagemate you can make reservations any time.',
 		image: 'https://image.freepik.com/free-vector/woman-booking-appointment-calendar_23-2148562875.jpg',
 	},
 	{
+    id:"3",
 		title: 'Manage your storageses',
 		description:
 		'Manage your storageses with few simple steps.',
@@ -60,15 +62,15 @@ function Home() {
                 <CurvedArrow color="#4169e1" fromSelector=".to" toSelector=".from" middleY={120} />
                 </div>
                 <div  style={{Width:"200px", height:"200px", float:"right", fontSize: "0.8cm", fontWeight: 'bold', color: "#4169e1"}}>
-                <h1 style={{ float:"right", fontSize: "1cm", fontWeight: 'bold', color: "#4169e1"}}> See our short promo video </h1>            
-              </div>
+                <h2 style={{ float:"right", fontSize: "1cm", fontWeight: 'bold', color: "#4169e1"}}> See our short promo video </h2>            
+                </div>
                 <div>
                <ReactPlayer  playing url='videos/promovideo.mp4'
                 width='60%'
                 height='50%'
-                controls='false'
-                loop="true">
-              </ReactPlayer>
+                loop={true} 
+                controls={false}
+                />
               </div>
               </div>
               </Animator>
@@ -78,14 +80,12 @@ function Home() {
           <div style={{display:"block", margin: -24, marginBottom: -36, paddingTop:100, background: "white" }}>   
           <Slider autoplay={1400}>
             {content.map((item, index) => (
-              <div>
-              <h1 style={{ fontSize: "0.8cm", fontWeight: 'bold', textAlign:"center", backgroundColor: 'white', color: "#4169e1"}}>{item.title}
+              <div  key={index}>
+              <h1 style={{ fontSize: "0.8cm", fontWeight: 'bold', textAlign:"center", backgroundColor: 'white', color: "#4169e1"}}>{item.title}</h1>
               <p style={{ fontSize: "0.6cm", fontWeight: 'bold', textAlign:"center", backgroundColor: 'white', color: "black"}}>{item.description}</p>
               <h1
-                key={index}
                 style={{ background: `url('${item.image}') no-repeat `,minHeight:600,  backgroundSize:"fit" }}
               >
-              </h1>
               </h1>
               </div>
               ))}
