@@ -31,6 +31,7 @@ exports.getReservationsByUser = async (req, res) => {
     const { email } = req.body 
 
     const reservationsByUser = await Reservation.find( {rentinguseremail: email });
+    if (!reservationsByUser) res.status(404).send("No reservations with that email found")
 
     res.status(200).send(reservationsByUser)
 }
@@ -69,7 +70,7 @@ exports.createReservation = async (req, res) => {
         const savedReservation = await newReservation.save()
         if (!savedReservation) throw Error("Error saving Reservation")
 
-        res.status(200).send(`yay ${savedReservation._id}`)
+        res.status(200).json({savedReservation})
     } catch (e){
         res.status(400).json({ error: e.message }) 
         alert(e.message)
@@ -86,7 +87,7 @@ exports.updateReservation = async (req, res) => {
 
     const updatedReservation = await Reservation.findOne({ _id: id })
 
-    res.status(200).send(updatedReservation)
+    res.status(200).json({updatedReservation})
 }
 
 
@@ -94,17 +95,20 @@ exports.updateReservation = async (req, res) => {
 exports.deleteReservation = async (req, res) => {
     const { id } = req.params;
 
-    const Reservation = await Reservation.findOneAndDelete({ _id: id })
+    const reservation = await Reservation.findOneAndDelete({ _id: id })
 
     if (!reservation) res.status(404).send("No reservation with that id found")
 
-    res.status(200).send(`Successfully deleted the following reservation: \n ${Reservation}`)
+    res.status(200).send(`Successfully deleted the following reservation: \n ${reservation}`)
 }   
 
 
 exports.getReservationById = async (req, res) => {
-    const {id} = req.params;
-    const reservation = await Reservation.findOne({ _id: id })
+    const { reservationid } = req.body;
+
+    const reservation = await Reservation.findOne({_id: reservationid})
+
+    if (!reservation) res.status(404).send("No reservation with that id found")
 
     res.status(200).send(reservation)
 }

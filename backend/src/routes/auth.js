@@ -102,7 +102,7 @@ router.post(
     validationMiddleware,
     authController.changepw
 );
-
+router.delete("/delete/:id", authController.deleteUser);
 
 
 module.exports = router;

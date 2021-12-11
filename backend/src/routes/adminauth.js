@@ -49,4 +49,6 @@ router.post(
     authController.adminsignup
 );
 
+router.delete("/delete", authController.deleteAdmin);
+
 module.exports = router;

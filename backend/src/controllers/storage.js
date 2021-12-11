@@ -10,7 +10,8 @@ exports.getStorageById = async (req, res) => {
     const { storageid } = req.body  
 
     const storage = await Storage.findOne({_id: storageid})
-
+    if (!storage) res.status(404).send("No storage with that id found")
+    
     res.status(200).send(storage)
 }
 
@@ -18,36 +19,44 @@ exports.getStorageById = async (req, res) => {
 
 
 exports.createStorage = async (req, res) => {
-    // Saaksite info kätta req.body -st
     const { name, number, volume, floorspace, priceperday, status} = req.body  
+    try{
+        const newStorage = new Storage({
+            name,
+            number,
+            volume,
+            floorspace,
+            priceperday,
+            status
+        })
 
-    const newStorage = new Storage({
-        name,
-        number,
-        volume,
-        floorspace,
-        priceperday,
-        status
-    })
+        const savedStorage = await newStorage.save()
+        if (!savedStorage) throw Error("Error saving Storage")
 
-    const savedStorage = await newStorage.save()
-    if (!savedStorage) throw Error("Error saving Storage")
 
-    res.status(200).send(`yay ${savedStorage._id}`)
+
+        console.log("Saved Storage");
+        console.log(savedStorage);
+        res.status(200).json({
+            ...savedStorage
+        })
+    } catch (e){
+        res.status(400).json({ error: e.message })
+    }
 }
 exports.updateStorage = async (req, res) => {
 
     const { id } = req.params;
-
+    console.log(id);
     const storage = await Storage.findOneAndUpdate({ _id: id }, req.body)
-
+    console.log(storage);
     if (!storage) res.status(404).send("No storage with that id found")
 
     const updatedStorage = await Storage.findOne({ _id: id })
 
-    res.status(200).send(`Successfully updated the following storage: \n ${updatedStorage}`)
-
-
+    res.status(200).json({
+        ...updatedStorage
+    })
 }
 
 

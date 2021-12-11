@@ -66,3 +66,21 @@ exports.adminsignup = async (req, res) => {
         res.status(400).json({ error: e.message })
     }
 }
+
+
+exports.deleteAdmin = async (req, res) => {
+    const { email, password } = req.body;
+
+    const admin = await Admin.findOne({ email: email })
+    
+    if (!admin) res.status(404).send("Admin with this id does not exist")
+
+    const isMatch = await bcrypt.compare(password, admin.password)
+    if (!isMatch) res.status(403).send("Password does not match")
+
+    const deletedAdmin = await Admin.findOneAndDelete({ email: email })
+
+    if (!deletedAdmin) res.status(404).send("No admin with that id found")
+
+    res.status(200).send(`Successfully deleted the following admin: \n ${deletedAdmin}`)
+}
