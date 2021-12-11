@@ -11,10 +11,11 @@ storageRoutes = require('./routes/storage');
 reservationRoutes= require('./routes/reservation');
 
 
-console.log (require('./routes/reservation'));
+
 const app = express()
 
 app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 
 app.use(function (req, res, next) {
@@ -55,7 +56,10 @@ app.get('*', (req, res) => {
     res.send('This route does not exist')
 })
 
-
+//DATABASE_URL="mongodb://localhost:27017/"
+//mongodb://root:root@mongo/storagemate?authSource=admin
+//rmongoose.Promise = global.Promise;
+console.log(process.env.MONGODB_URI);
 mongoose
     .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,
@@ -68,4 +72,7 @@ mongoose
         console.log(err)
         process.exit(1)
     })
+    console.log(process.env.DATABASE_URL);
+
+module.exports = app;
 

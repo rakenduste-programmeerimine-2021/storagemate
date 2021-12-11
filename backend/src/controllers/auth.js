@@ -76,10 +76,10 @@ exports.update = async (req, res) => {
 
     const user = await User.findOne({ _id: id })
     
-    if (!user) throw Error("User with this e-mail does not exist")
+    if (!user) throw Error("User with this id does not exist")
 
     const isMatch = await bcrypt.compare(password, user.password)
-    if (!isMatch) throw Error("I should not say that the password does not match")
+    if (!isMatch) throw Error("Password does not match")
     
 
     const userTemplate = {
@@ -141,8 +141,29 @@ exports.changepw = async (req, res) => {
         const savedUser = await User.findOneAndUpdate({email: email}, {password: hash})
         if (!savedUser) throw Error("Error updating password")
 
-        res.status(200).json({ message: "User updated successfully" })
+        res.status(200).json({ message: "Password updated successfully" })
     } catch (e) {
-        res.status(400).json({ error: e.message })
+        res.status(400).json({ message: e.message })
     }
+}
+
+
+exports.deleteUser = async (req, res) => {
+    const { id } = req.params;
+    const { password } = req.body;
+
+    const user = await User.findOne({ _id: id })
+    
+    if (!user) res.status(404).send("User with this id does not exist")
+
+    const isMatch = await bcrypt.compare(password, user.password)
+    if (!isMatch) res.status(403).send("Password does not match")
+    
+
+
+    const deletedUser = await User.findOneAndDelete({ _id: id })
+
+    if (!deletedUser) res.status(404).send("No user with that id found")
+
+    res.status(200).send(`Successfully deleted the following user: \n ${deletedUser}`)
 }
