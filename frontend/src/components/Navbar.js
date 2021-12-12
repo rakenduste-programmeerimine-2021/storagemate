@@ -1,4 +1,4 @@
-import React, {useContext, useState/*,useEffect*/} from 'react';
+import React, {useContext} from 'react';
 import 'antd/dist/antd.css';
 import { useHistory } from "react-router-dom";
 import { Menu } from 'antd';
@@ -11,7 +11,7 @@ import {
   LogoutOutlined,
   SettingOutlined
 } from '@ant-design/icons';
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import "./Navbar.css";
 import { Context } from "../store";
 import {logoutUser} from "../store/actions";
@@ -21,23 +21,6 @@ const Navbar = () =>  {
   
   const[state, dispatch] = useContext(Context)
   const history = useHistory();
-  //const [key, setKey] = useState("");
-  const [current, setCurrent] = useState(window.location.pathname)       
-
-  /*useEffect(() => {
-      if (window.location) {
-        console.log(window.location)
-        console.log (window.location.pathname)
-        if( current !== window.location.pathname ) {
-          setCurrent(window.location.pathname);
-        }
-      }
-  }, [window.location, current]);*/
-
-  const handleClick = (key) => {
-      setCurrent(key);
-
-  };
 
   const Logout = () => {
     dispatch(logoutUser())
@@ -48,9 +31,9 @@ const Navbar = () =>  {
     
       <>
         <div className="logo">
-          <Link to="/">
+          <NavLink to="/">
             <img className="logo" src="Storagemate.png" alt="ReactLogo" />
-          </Link>
+          </NavLink>
         </div>
 
         <Menu 
@@ -58,49 +41,55 @@ const Navbar = () =>  {
           theme="dark" 
           mode="horisontal"
 
-          onClick={handleClick}
-          selectedKeys={[current]}
           selectable={true}
         >
           {!state.auth.token ?
             <>
-              <Menu.Item key="/" icon={<HomeOutlined />}><Link to="/"></Link>
+              <Menu.Item key="/" icon={<HomeOutlined />}><NavLink to="/"></NavLink>
                 Home
               </Menu.Item>
 
-              <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
+              <Menu.Item  key="/storages" icon={<DropboxOutlined />}><NavLink to="/storages"></NavLink>
                 Storages
               </Menu.Item>
-              <Menu.Item  key="/aboutus" icon={<InfoCircleOutlined />}><Link to="/aboutus"></Link>
+              <Menu.Item  key="/aboutus" icon={<InfoCircleOutlined />}><NavLink to="/aboutus"></NavLink>
                 About Us
               </Menu.Item>
-              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<LoginOutlined />}><Link to="/Login"></Link>
+              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<LoginOutlined />}><NavLink to="/Login"></NavLink>
                 Login
               </Menu.Item>
-              <Menu.Item  style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="/Register" icon={<UserOutlined />}><Link to="/Register"></Link>
+              <Menu.Item  style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="/Register" icon={<UserOutlined />}><NavLink to="/Register"></NavLink>
                 Register
               </Menu.Item>
             </>
             :
             <>
-              <Menu.Item key="/" icon={<HomeOutlined />}><Link to="/"></Link>
-                Home
+              <Menu.Item key="/" icon={<HomeOutlined />}>
+                <NavLink to="/">
+                  Home
+                </NavLink>
               </Menu.Item>
 
-              <Menu.Item  key="/storages" icon={<DropboxOutlined />}><Link to="/storages"></Link>
-                Storages
+              <Menu.Item  key="/storages" icon={<DropboxOutlined />}>
+                <NavLink to="/storages">
+                  Storages
+                </NavLink>
               </Menu.Item>
-              <Menu.Item key="/aboutus" icon={<InfoCircleOutlined />}><Link to="/aboutus"></Link>
-                About Us
+              <Menu.Item key="/aboutus" icon={<InfoCircleOutlined />}>
+                <NavLink to="/aboutus">
+                  About Us
+                </NavLink>
               </Menu.Item>
-              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<SettingOutlined />}><Link to="/myprofile"></Link>
-                My Profile
+              <Menu.Item  style={{marginLeft: 'auto',position: 'absolute', top: 0, right: 114}} key="/Login" icon={<SettingOutlined />}>
+                <NavLink to="/myprofile">
+                  My Profile
+                </NavLink>
               </Menu.Item>
               
               <Menu.Item style={{marginLeft: 'auto', position: 'absolute', top: 0, right: 0}} key="x" icon={<LogoutOutlined />}>
-                <Link to="/" onClick={Logout}>
+                <NavLink to="/" onClick={Logout}>
                   Log out
-                </Link>
+                </NavLink> 
               </Menu.Item>
               
             </>

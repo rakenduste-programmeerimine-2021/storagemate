@@ -1,4 +1,4 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState } from "react";
 import { Context } from "../store";
 import { updateStorages } from "../store/actions";
 import { Form, Input, Button, Row, Col } from 'antd';
@@ -14,7 +14,7 @@ const layout = {
   },
 };
 
-
+/* eslint-disable no-template-curly-in-string */
 const validateMessages = {
   required: '${label} is required!',
   types: {
@@ -25,7 +25,7 @@ const validateMessages = {
     range: '${label} must be between ${min} and ${max}',
   },
 };
-
+/* eslint-enable no-template-curly-in-string */
 
 
 
@@ -41,9 +41,7 @@ function EditStorage() {
   const [priceperday, setPricePerDay] = useState(useLocation().state.priceperday);
   let history = useHistory();
 
-  const [state, dispatch] = useContext(Context);
-  const inputRef = useRef(null);
-  const contentRef = useRef(null);
+  const [, dispatch] = useContext(Context);
   
   
   const id = useLocation().state.id;

@@ -4,7 +4,6 @@ import { updateStorages, removeStorage } from '../store/actions';
 import { Context } from "../store";
 import { useHistory } from "react-router-dom";
 import AdminReservations from "../components/AdminReservations"
-import NewStorageAdd from './NewStorageAdd';
 
 const { TabPane } = Tabs;
 
@@ -22,15 +21,17 @@ const AdminHome = () => {
     const history = useHistory();
 
     useEffect (() => {
+      async function fetchData(){
         fetch('http://localhost:8081/api/storage').then(res => {
             return res.json();
         }).then(async (data) =>{
             console.log(data);
-            await dispatch(updateStorages(data))
-            console.log(state.storages.data)
+            await dispatch(updateStorages(data));
             setIsLoading(false);
         }); 
-    },[]);  
+      }
+      fetchData();
+    });  
 
 
 
@@ -93,7 +94,6 @@ const AdminHome = () => {
         fetch('http://localhost:8081/api/storage').then(res => {
             return res.json();
         }).then((data) =>{
-            console.log(data);
             dispatch(updateStorages(data));
         })
     }

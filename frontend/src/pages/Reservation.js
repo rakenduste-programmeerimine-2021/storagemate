@@ -126,7 +126,7 @@ function Reservation() {
   <Row>
     
   <Col flex={2} >
-  <Descriptions.Item label="Status" span={3}>
+  <Descriptions.Item label="Status" >
     <Badge color="green" status="processing" text="Available" />
   </Descriptions.Item>
   <Descriptions title= "Storage booking information" bordered column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }} >
@@ -135,10 +135,10 @@ function Reservation() {
     <Descriptions.Item label="Name of storage">{useLocation().state.name}</Descriptions.Item>
     <Descriptions.Item label="Volume">{useLocation().state.volume}</Descriptions.Item>
     <Descriptions.Item label="Floorspace">{useLocation().state.floorspace}</Descriptions.Item>
-    <Descriptions.Item label="Rental start" span={2}>
+    <Descriptions.Item label="Rental start" >
       {useLocation().state.startdate}
     </Descriptions.Item>
-    <Descriptions.Item label="Rental end" span={2}>
+    <Descriptions.Item label="Rental end" >
       {useLocation().state.enddate}
     </Descriptions.Item>
     <Descriptions.Item label="Price of rental">{totalprice}$</Descriptions.Item>

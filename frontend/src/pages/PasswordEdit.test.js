@@ -44,3 +44,10 @@ describe (' Password edit page', () => {
 
 
 });*/
+
+import PasswordEdit from './PasswordEdit'
+
+it('checks if Password Edit renders', () => {
+    const component = <PasswordEdit shouldRender />
+    expect(component).toBeDefined()
+})
