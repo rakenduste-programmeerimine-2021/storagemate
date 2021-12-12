@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react';
 import { Table, Popconfirm, Button } from 'antd';
 import { updateReservations,  } from '../store/actions';
 import { Context } from "../store";
-import { useHistory } from "react-router-dom";
 import moment from 'moment';
 
 
@@ -15,19 +14,20 @@ import moment from 'moment';
 const AdminReservations = () => {
     const [state, dispatch] = useContext(Context);
     const [isLoading, setIsLoading] = useState(true);
-    const history = useHistory();
 
 
     useEffect (() => {
-        fetch('http://localhost:8081/api/reservation').then(res => {
-            return res.json();
-        }).then(async (data) =>{
-            console.log(data);
-            await dispatch(updateReservations(data))
-            console.log(state.reservations.data)
-            setIsLoading(false);
-        }); 
-    },[]);  
+        async function fetchData() {
+            fetch('http://localhost:8081/api/reservation').then(res => {
+                return res.json();
+            }).then(async (data) =>{
+                //console.log(data);
+                dispatch(updateReservations(data))
+                setIsLoading(false);
+            });
+        }
+        fetchData();     
+    });  
 
 
 
