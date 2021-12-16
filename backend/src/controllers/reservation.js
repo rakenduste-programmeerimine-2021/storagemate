@@ -79,8 +79,7 @@ exports.createReservation = async (req, res) => {
 exports.updateReservation = async (req, res) => {
 
     const { id } = req.params;
-    console.log(req.body);
-    console.log(id);
+    
     const reservation = await Reservation.findOneAndUpdate({ _id: id }, req.body)
 
     if (!reservation) res.status(404).send("No reservation with that id found")

@@ -25,7 +25,6 @@ const AdminHome = () => {
         fetch('http://localhost:8081/api/storage').then(res => {
             return res.json();
         }).then(async (data) =>{
-            console.log(data);
             await dispatch(updateStorages(data));
             setIsLoading(false);
         }); 
@@ -82,7 +81,7 @@ const AdminHome = () => {
     ];
 
     async function handleDelete (id)  {
-        console.log(id)
+
         dispatch(removeStorage(id));
         await fetch('http://localhost:8081/api/storage/delete/' + id, {
             method: 'DELETE',

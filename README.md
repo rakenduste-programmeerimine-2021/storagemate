@@ -37,16 +37,33 @@ Väikeste laobokside välja rentimise app, mis võimaldab näha erineval ajavahe
 
 
 ## _Installeerimisjuhis_
-
-**Tulekul!**
+Eeldused:
+ Dockeri ja vsCode installeeritud
+-Klooni repositoorium (võib ka lihtsalt alla laadida)
 
 ```sh
-
+git  clone https://github.com/rakenduste-programmeerimine-2021/storagemate.git
 ```
+-Navigeeri kausta local_dev
+```sh
+cd storagemate/local-dev
+```
+-Installeeri backend (node-modules)
+```sh
+docker-compose run --rm --no-deps backend-node install
+```
+-Installeeri frontend (node-modules)
+```sh
+docker-compose run --rm --no-deps frontend-react install
+```
+-Stardi Dockeris
+```sh
+docker-compose up -d
+```
+-Edasi käivita Dockeris vajutades local-dev järel start nuppu
+Rakendusele saab ligi Dockeris frontend järel nuppu OPEN IN BROWSER klikkides või aadressilt locahost:3000 
 
-
-
-
+Enjoy!
 
 
 

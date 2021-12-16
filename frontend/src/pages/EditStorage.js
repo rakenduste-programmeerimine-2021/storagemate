@@ -59,7 +59,7 @@ function EditStorage() {
         floorspace: floorspace,
         priceperday: priceperday,     
       }
-      console.log(itemSubmitted);
+    
       const response = await fetch('http://localhost:8081/api/storage/update/' + id, {
           method: 'PUT',
           body: JSON.stringify(itemSubmitted),
@@ -69,8 +69,6 @@ function EditStorage() {
       });
       const data = await response;
     
-        console.log(data)
-        console.log(data.message)
       if(response.ok){
             dispatch(updateStorages(itemSubmitted));
             history.push('/adminhome');

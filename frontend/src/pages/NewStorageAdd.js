@@ -54,7 +54,7 @@ function NewStorageAdd() {
         floorspace: floorspace,
         priceperday: priceperday,     
       }
-      console.log(itemSubmitted);
+      
       const response = await fetch('http://localhost:8081/api/storage/create/', {
           method: 'POST',
           body: JSON.stringify(itemSubmitted),
@@ -64,22 +64,14 @@ function NewStorageAdd() {
       });
       const data = await response;
     
-        console.log(data)
-        console.log(data.message)
+      
       if(response.ok){
             dispatch(addStorage(itemSubmitted));
             history.push('/adminhome');
         };
         
         
-
-
-
-
-   // dispatch(addPost(newPost));
   };
-
-  //console.log({ inputRef });
 
   return (
 

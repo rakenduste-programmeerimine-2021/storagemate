@@ -95,7 +95,6 @@ exports.update = async (req, res) => {
     if (!UserUpdate) throw Error("No user with that id found")
 
     const updatedUser = await User.findOne({ _id: id })
-    console.log(updatedUser)
 
     const userTemplateAfterDB = {
         id: updatedUser._id,

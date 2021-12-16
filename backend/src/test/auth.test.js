@@ -82,7 +82,7 @@ describe('Login user', () => {
                 expect(res.body).toHaveProperty('email');
                 expect(res.body.email).toBe("test@test.com");
                 id= res.body.id
-                console.log("ID: " +id)
+                
               
                 
             })    
@@ -179,7 +179,7 @@ describe('Delete user by id', () => {
         .expect(200)
         .expect((res) => {
             expect(200)
-            console.log(res.text)
+            
             expect(res.text).toContain("Successfully deleted the following user:")
         })
         .end(done);

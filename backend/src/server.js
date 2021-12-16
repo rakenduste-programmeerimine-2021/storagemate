@@ -59,7 +59,6 @@ app.get('*', (req, res) => {
 //DATABASE_URL="mongodb://localhost:27017/"
 //mongodb://root:root@mongo/storagemate?authSource=admin
 //rmongoose.Promise = global.Promise;
-console.log(process.env.MONGODB_URI);
 mongoose
     .connect(process.env.MONGODB_URI, {
         useNewUrlParser: true,

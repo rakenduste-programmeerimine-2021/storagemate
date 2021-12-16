@@ -66,7 +66,7 @@ function ProfileEdit() {
           password: password,
           __v: 0,
         }
-        console.log(editedUser);
+        
         const response = await fetch('http://localhost:8081/api/auth/update/' + id, {
             method: 'POST',
             body: JSON.stringify(editedUser),
@@ -76,8 +76,7 @@ function ProfileEdit() {
         });
         const data = await response.json();
       
-          console.log(data)
-          console.log(data.message)
+       
         if(response.ok){
               dispatch(updateUser(data));
               form.resetFields();

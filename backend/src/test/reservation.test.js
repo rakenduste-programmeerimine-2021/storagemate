@@ -35,15 +35,14 @@ describe('Creating new reservation', () => {
 
 
             expect(200)
-            console.log(res.body)
+            
             expect(res.body).not.toBeNull();
             expect(res.body.savedReservation.storageid).toBe('testid');
             expect(res.body.savedReservation.rentalstart).toBe("2100-01-01T00:00:00.000Z");
             expect(res.body.savedReservation.storageName).toBe('Teststorage');
             expect(res.body.savedReservation.storageNumber).toBe('999');
             id = res.body.savedReservation._id;
-            console.log("Testreservation ID:")
-            console.log(id)
+          
         })
         .end(done);
    
@@ -156,7 +155,6 @@ describe('Get reservation by user', () => {
         .expect(200)
         .expect((res) => {
             expect(200)
-            console.log(res.body)
             expect(res.body).not.toBeNull();
             expect.arrayContaining(['testiduus'])
         })

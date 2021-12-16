@@ -35,8 +35,7 @@ exports.createStorage = async (req, res) => {
 
 
 
-        console.log("Saved Storage");
-        console.log(savedStorage);
+        
         res.status(200).json({
             ...savedStorage
         })
@@ -47,9 +46,9 @@ exports.createStorage = async (req, res) => {
 exports.updateStorage = async (req, res) => {
 
     const { id } = req.params;
-    console.log(id);
+
     const storage = await Storage.findOneAndUpdate({ _id: id }, req.body)
-    console.log(storage);
+
     if (!storage) res.status(404).send("No storage with that id found")
 
     const updatedStorage = await Storage.findOne({ _id: id })

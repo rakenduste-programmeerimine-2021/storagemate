@@ -15,17 +15,12 @@ const Login = () => {
     const [password, setPassword] =useState('')
     const history = useHistory();
     
-    console.log(state);
+   
     
     const onFinish = async (e) => {
-        console.log('Received values of form: ', e);
 
         setEmail(e.email)
         setPassword(e.password)
-
-
-        console.log(email);
-        console.log(password);
 
         const response = await  fetch('http://localhost:8081/api/auth/login/', {
             method: 'POST',
@@ -44,8 +39,6 @@ const Login = () => {
         const data = await response.json()
         
         if (data.token) {
-            console.log(" RESPONSE OK ");
-            console.log(data);
             dispatch(loginUser(data));
             history.push("/") 
         }

@@ -63,8 +63,6 @@ function Register() {
     
 
     const onFinish = async (e) => {
-        console.log(e);
-
 
         setFirstName(e.firstname);
         setLastName(e.lastname);
@@ -72,13 +70,6 @@ function Register() {
         setPhone(e.phone);
         setPassword(e.password);
         setConfirmPassword(e.confirmpassword);
-    
-    
-        console.log(firstName);
-        console.log(lastName);
-        console.log(email);
-        console.log(phone);
-        console.log(password);
 
         const response = await fetch('http://localhost:8081/api/auth/signup/', {
             method: 'POST',
@@ -97,8 +88,6 @@ function Register() {
     
         const data = await response.json()
     
-        console.log(data)
-        console.log(data.message)
         if(response.ok){
             history.push('/login');
         };
