@@ -17,7 +17,6 @@ function Storages() {
   const [isLoading, setIsLoading] = useState(true);
   const history = useHistory();
   const { RangePicker } = DatePicker;
-  console.log(state.auth)
   
 
   function disabledDate(current) {
@@ -30,18 +29,13 @@ function Storages() {
     console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
     startdate = dateStrings[0];
     enddate = dateStrings[1];
-    console.log(startdate);
-    console.log(enddate);
+   
     let sdate = Date.parse(startdate);
     let edate = Date.parse(enddate);
-    console.log(sdate)
-    console.log(edate)
+    
 
     var Difference_In_Time = edate - sdate;
     daycount = parseInt(Difference_In_Time / (1000 * 3600 * 24));
-    console.log(daycount, "siin on paevade vahe")
-    
-    
 
     const response = await  fetch('http://localhost:8081/api/reservation/bydate/', {
         method: 'POST',
@@ -58,15 +52,16 @@ function Storages() {
 
     const reservedStorageIds = await response.json()
 
-    console.log(reservedStorageIds)
+   
 
     fetch('http://localhost:8081/api/storage').then(res => {
         return res.json();
     }).then(async (fulldata) =>{
-        console.log(fulldata);
+      
         var data = fulldata.filter(object => !reservedStorageIds.includes(object._id))
-        console.log(data);
+
         dispatch(updateStorages(data))
+
         setIsLoading(false);
     });
 
@@ -74,12 +69,7 @@ function Storages() {
   }
 
   function handleReservation(ID, NAME, NUMBER, VOLUME, FLOORSPACE, STATUS, STARTDATE, ENDDATE, PRICEPERDAY, DAYCOUNT ){
-    console.log(ID);
-    console.log(NAME);
-    console.log(NUMBER);
-    console.log(VOLUME);
-    console.log(FLOORSPACE)
-    console.log(STATUS)
+   
     history.push("/reservation", {id: ID, name: NAME, number: NUMBER, volume: VOLUME, floorspace: FLOORSPACE, status: STATUS, startdate: STARTDATE, enddate: ENDDATE, priceperday: PRICEPERDAY, daycount: DAYCOUNT})
         
   }

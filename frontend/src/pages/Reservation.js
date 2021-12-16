@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Context } from "../store";
-import { useLocation, useHistory} from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { Descriptions, Badge } from 'antd';
 import { Row, Col } from 'antd';
 import { Modal, Button } from 'antd';
@@ -12,23 +12,7 @@ function Reservation() {
 
 
   const [state, ] = useContext(Context);
-  const history = useHistory();
 
-  if(state.auth.token === null) {
-    history.push('/login')
-  }
-
-
-  console.log(useLocation().state.id);
-  console.log(useLocation().state.name);
-  console.log(useLocation().state.number);
-  console.log(useLocation().state.volume);
-  console.log(useLocation().state.floorspace);
-  console.log(useLocation().state.status);
-  console.log(useLocation().state.startdate);
-  console.log(useLocation().state.enddate);
-  console.log(useLocation().state.daycount);
-  console.log(useLocation().state.priceperday);
   const storageid =  useLocation().state.id;
   const rentalstart = useLocation().state.startdate;
   const rentalend = useLocation().state.enddate;
@@ -67,13 +51,6 @@ function Reservation() {
 
   const handleOk = async() => {
 
-    console.log(storageid)
-    console.log(rentalstart)
-    console.log(rentalend)
-    console.log(rentinguseremail)
-    console.log(totalprice)
-
-
     const response = await fetch('http://localhost:8081/api/reservation/create/', {
       method: 'POST',
       body: JSON.stringify({
@@ -111,7 +88,7 @@ function Reservation() {
 
 
   const handleCancel = () => {
-    console.log('Clicked cancel button');
+  
     setVisible(false);
   };
 

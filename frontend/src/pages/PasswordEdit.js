@@ -64,7 +64,7 @@ const layout = {
         
     
         const onFinish = async (e) => {
-            console.log(e);
+        
     
     
             setOldpassword(e.oldpassword);
@@ -72,11 +72,6 @@ const layout = {
             setConfirmpassword(e.confirmpassword);
         
         
-            console.log(firstName);
-            console.log(lastName);
-            console.log(email);
-            console.log(phone);
-            console.log(password);
     
             const response = await fetch('http://localhost:8081/api/auth/changepw/', {
                 method: 'POST',
@@ -96,8 +91,7 @@ const layout = {
         
             const data = await response.json()
         
-            console.log(data)
-            console.log(data.message)
+            
             if(response.ok){
                 history.push('/myprofile');
             };

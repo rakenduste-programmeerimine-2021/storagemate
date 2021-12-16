@@ -90,8 +90,6 @@ const AdminReservations = () => {
 
 
     const getFullDate = (e) => {
-        console.log(e)
-        console.log(moment(e).utc().format('MM/DD/YYYY'))
         return (moment(e).utc().format('MM/DD/YYYY'))
         
         
@@ -100,7 +98,6 @@ const AdminReservations = () => {
 
 
     async function handleEnd (item){
-        console.log(item._id)
 
         const date= (moment(Date.now()).utc().format('MM/DD/YYYY'))
         const updatedReservation={
@@ -115,7 +112,6 @@ const AdminReservations = () => {
             floorspace: item.floorspace,
             priceperday: item.priceperday
         }
-        console.log(updatedReservation)
 
         const response = await fetch('http://localhost:8081/api/reservation/update/' + item._id, {
             method: 'PUT',
@@ -130,9 +126,9 @@ const AdminReservations = () => {
             fetch('http://localhost:8081/api/reservation').then(res => {
                 return res.json();
             }).then(async (data) =>{
-                console.log(data);
+            
                 await dispatch(updateReservations(data))
-                console.log(state.reservations.data)
+            
                 setIsLoading(false);
             }); 
         }else{
